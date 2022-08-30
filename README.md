@@ -787,3 +787,182 @@ function ReactComponent() {
 ```
 
 React에서 고차 함수를 활용해야 한다.
+
+### 삼항연산자 다루기
+
+삼항연산자 사용에 있어 일관성이 필요.
+
+삼항연산자는 3개의 '피'연산자가 필요하며, 조건 ? 참(식) : 거짓(식)
+
+```javascript
+function example() {
+  return condition1
+    ? value1
+    : condition2
+    ? value2
+    : condition3
+    ? value3
+    : value4;
+}
+
+function example() {
+  // 조건을 정의해본 후 케이스가 많다면 switch문을 고려한다.
+  if (condition1) {
+    return value1;
+  } else if (condition2) {
+    return value2;
+  } else if (condition3) {
+    return value3;
+  } else {
+    return value4;
+  }
+
+  const temp = condition1;
+  condition2;
+  condition3;
+
+  switch (key) {
+    case value:
+      break;
+    default:
+      value4;
+  }
+}
+```
+
+```javascript
+// 한번 감싸주며 가독성을 높여준다.
+const example = condition1 ? (a === 0 ? "zero" : "positive") : "negative";
+```
+
+```javascript
+// 삼항 연산자의 좋은 예시
+const welcomeMessage = (isLogin) => {
+  const name = isLogin ? getName() : "이름없음";
+
+  return `안녕하세요 ${name}`;
+};
+```
+
+```javascript
+// 좋지 않은 예
+// 삼항연사자는 값 혹은 식을 작성해 주는 게 좋음
+// 두 alert의 반환은 undefined이기 때문에 삼항연산자보다 if문을 작성해 주는 게 좋다고 봄
+// 숏코딩 or if문 개인 취향
+function alertMessage(isAdult) {
+  isAdult ? alert("입장이 가능합니다.") : alert("입장이 불가능합니다.");
+
+  if (isAdult) {
+  } else {
+  }
+}
+
+// 이런 예시도 있다.
+function alertMessage(isAdult) {
+  return isAdult ? "입장 가능" : "입장 불가능";
+}
+```
+
+```javascript
+const isAdult = age > 19 ? "yes" : "no";
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
