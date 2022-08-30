@@ -547,3 +547,56 @@ parseInt("9.9999", 10); // 9
 ### isNaN
 
 IEEE 754 (부동소수점 방식) 채택
+
+```javascript
+// JS 최대 정수
+Number.MAX_SAFE_INTEGER;
+
+// JS 정수 검사
+Number.isInteger;
+
+// isNaN -> is Not a Number -> 숫자가 아니다.
+typeof 123 === "number"; // true
+typeof 123 !== "number"; // false
+isNaN(123); // false -> 숫자가 숫자가 아니다.
+
+// ES2015+
+isNan(123 + "test"); // true
+Number.isNaN(123 + "test"); // false
+
+isNaN; // 느슨한 검사
+Number.isNaN; // 엄격한 검사
+```
+
+### Min - Max
+
+```javascript
+/*
+min - max
+
+1. 최소값와 최대값을 다룬다.
+2. 최소값와 최대값 포함 여부를 결정해야 함. (이상 - 초과 / 이하 - 미만) 
+3. 혹은 네이밍에 최소값과 최대값 포함 여부를 포함한다.
+*/
+
+function genRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const MAX_AGE = 20;
+
+function isAdult(age) {
+  // 최소값, 최대값 (포함되는지 vs 안되는지)
+  // 이상, 초과, vs 이하, 미만
+  if (age >= 20) {
+  }
+}
+
+// 최대, 최소 상수를 설정한다.
+const MIN_NUMBER = 1;
+const MAX_NUMBER = 45;
+
+genRandomNumber(MIN_NUMBER, MAX_NUMBER);
+```
+
+### Begin - End
