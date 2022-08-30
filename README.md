@@ -653,3 +653,137 @@ Suffix
 Prefix와 Suffix는 일관성을 가질 수 있는 아주 좋은 예시이다.
 
 ### 매개변수의 순서가 경계!
+
+```javascript
+/*
+1. 매개변수를 2개가 넘지 않도록 만든다.
+2. arguments, rest parameter
+3. 매개변수를 객체에 담아서 넘긴다.
+4. 랩핑하는 함수
+ */
+
+// 객체로 받거나 전개 연산자 혹은 arg로 받는다.
+function someFunc({ someArg1, someArg2 }) {}
+function someFunc(...someArg) {}
+function someFunc(someArg, someArg) {}
+
+// 매개변수로 어느정도 유추 가능
+genRandomNumber(1, 50);
+getDates("2022-01-01", "2022-02-01");
+genShuffleArray(1, 5);
+```
+
+### 값식문
+
+문법 : 말의 구성 및 운용상의 규칙. 또는 그것을 연구하는 학문.
+
+중요한 이유 - 개발자는 프로그래밍 언어를 사용하기 때문.
+
+컴퓨터를 이해시키지 못하면 문법 에러를 일으킨다.
+
+문법 에러 -> 장애 -> 서비스 마비까지...
+
+```javascript
+// This JSX:
+ReactDOM.render(<div id="msg">Hello World!</div>, mountNode);
+
+// Is transformed to this JS:
+ReactDOM.render(
+  React.createElement("div", { id: "msg" }, "Hello World!"),
+  mountNode
+);
+```
+
+```javascript
+// 문을 잘못 입력한 경우
+// This JSX:
+<div id={if (condition) { 'msg' }}>Hello World!</div>
+
+// Is transformed to this JS:
+React.createElement("div", {id: if (condition) { 'msg' }}, "Hello World!");
+
+// 삼함연산자는 사용 가능
+ReactDOM.render(<div id={condition ? 'msg' : null}>Hello World!</div>, mountNode);
+```
+
+```javascript
+// 논리연산자 사용 가능
+// 즉시 실행 함수 사용 가능
+function ReactComponent() {
+  return (
+    <section>
+      <h1>Color</h1>
+      <h3>Name</h3>
+      <p>{this.state.color || "white"}</p>
+      <h3>Hex</h3>
+      <p>
+        {(() => {
+          switch (this.state.color) {
+            case "red":
+              return "#FF0000";
+            case "green":
+              return "#00FF00";
+            case "blue":
+              return "#0000FF";
+            default:
+              return "#FFFFFF";
+          }
+        })()}
+      </p>
+    </section>
+  );
+}
+```
+
+```javascript
+// 즉시 실행 함수로 감싸 포문으로 임시 변수에 값을 누적시켜 반환하는 안좋은 예
+function ReactComponent() {
+  return (
+    <tbody>
+      {
+        // 수정전 코드
+        (() => {
+          const rows = [];
+
+          for (let i = 0; i < objectRows.length; i++) {
+            rows.push(<ObjectRow key={i} data={objectRows[i]} />);
+          }
+          return rows;
+        })()
+      }
+      {
+        // 수정후 코드, 값과 식만 들어간다.
+        objectRows.map((obj, i) => (
+          <ObjectRow key={i} data={objectRows[i]} />
+        ))
+      }
+    </tbody>
+  );
+}
+```
+
+```javascript
+function ReactComponent() {
+  return (
+    <div>
+      {
+        // 수정전 코드
+        (() => {
+          if (conditionOne) return <span>One</span>;
+          if (conditionTwo) return <span>Two</span>;
+          else conditionOne;
+          return <span>Three</span>;
+        })()
+      }
+      {
+        // 수정후 코드
+        conditionOne && <span>One</span>
+      }
+      {conditionTwo && <span>Two</span>}
+      {conditionTwo && <span>Three</span>}
+    </div>
+  );
+}
+```
+
+React에서 고차 함수를 활용해야 한다.
