@@ -475,3 +475,46 @@ Object.prototype.toString.call(date);
 
 - JS는 동적인 타입 -> 타입 검사 어려움 -> 상황에 맞는 타입 검사 방법과 주의를 찾아야함 -> 외우기는 힘듦
 - Primitive vs reference -> typeof, instanceof가 있음 + Object.prototype.~~~
+
+### undefined & null
+
+```javascript
+!null;
+!!null;
+null === false; // false
+!null === true; // true
+// 수학적으로 null -> 0으로 취급
+null + 123;
+
+// 선언했지만 값은 정의되지 않고 할당 X
+let varb;
+typeof varb; // undefined
+undefined + 10; // NaN
+!undefined; // true
+undefined == null; // true
+undefined === null; // false
+!undefined === !null; // true
+```
+
+undefined, null -> 값이 없거나 정의되지 않은 즉, 명시적인 표현
+
+undefined -> NaN
+null -> 0
+
+undefined -> type undefined
+null -> object
+
+### eqeq 줄이기
+
+Equality -> == (느슨)
+
+Strict equality -> === (엄격)
+
+==을 이용해 비교하면 type casting이 발생해서 '1'과 1이 같다고 나온다.
+
+```javascript
+"1" == 1; // true
+1 == true; // true
+```
+
+### 형변환 주의하기
