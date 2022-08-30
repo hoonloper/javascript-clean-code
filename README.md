@@ -600,3 +600,13 @@ genRandomNumber(MIN_NUMBER, MAX_NUMBER);
 ```
 
 ### Begin - End
+
+```javascript
+function reservationDate(beginDate, endDate) {
+  // ...some code
+}
+
+reservationDate("YYYY-MM-DD", "YYYY-MM-DD");
+```
+
+시작은 동일하나 끝은 다를 경우이다. (Ex : 숙소 예약 등)
