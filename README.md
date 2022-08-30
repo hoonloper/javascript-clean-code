@@ -629,3 +629,25 @@ function getStudents(firstStudent, lastStudent) {
 
 getStudents("에이", "씨");
 ```
+
+### Prefix - Suffix
+
+- Prefix - 접두사
+- Suffix - 접미사
+
+Prefix
+
+- use~~~
+- @~~~
+- \_~~~
+- $~~~
+
+Suffix
+
+- .entity
+- .dto
+- .controller
+- .service
+- s(복수), (단수)
+
+Prefix와 Suffix는 일관성을 가질 수 있는 아주 좋은 예시이다.
