@@ -48,3 +48,85 @@ let name = "이름";
 // const는 재선언과 재할당 모두 불가능하다. 즉 상수이다.
 const name = "이름";
 ```
+
+### function scope & block scope
+
+```javascript
+var global = "전역";
+
+// var는 함수단위 스코프이다보니 if문에 해당되지 않음.
+if (global === "전역") {
+  var global = "지역 변수";
+
+  console.log(global);
+}
+
+// 전역 변수까지 영향을 주게 됨
+console.log(global);
+
+let global = "전역";
+
+// let은 블록 스코프이기 때문에 if문에서 스코프 적용.
+if (global === "전역") {
+  let global = "지역 변수";
+
+  console.log(global);
+}
+
+// 지역과 전역의 차이 확인 가능.
+console.log(global);
+
+const global = "전역";
+
+// const 또한 동일하다.
+if (global === "전역") {
+  const global = "지역 변수";
+
+  console.log(global);
+}
+
+// 지역과 전역의 차이 확인 가능.
+console.log(global);
+```
+
+### let보다 cont를 사용하면 좋은 이유
+
+변수안에 많은 것을 담을 수 있다보니 재할당의 개념으로 접근하면 좋다.
+
+```javascript
+// 선언과 동시에 할당
+const person = {
+  name: "jung",
+  age: "25",
+};
+
+// const는 재할당이 금지됨
+person = {
+  name: "jung",
+  age: "25",
+};
+
+// 값을 바꾸기 위해서 .으로 접근함.
+
+person.name = "lee";
+person.age = "20";
+
+console.log(person);
+
+// 배열은 아래와 같음
+const person = [
+  {
+    name: "jung",
+    age: "25",
+  },
+];
+
+person.push({
+  name: "jung",
+  age: "25",
+});
+
+console.log(person);
+```
+
+### 전역 공간 최소화
