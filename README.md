@@ -958,20 +958,65 @@ function SomeComponent({ content }) {
 }
 ```
 
-```javascript
+### 단축 평가
 
+```javascript
+// AND
+true && true && "도달 O";
+true && false && "도달 X";
+
+// OR
+false || false || "도달 O";
+true || true || "도달 X";
 ```
 
 ```javascript
+function fetchData(state) {
+  if (state.data) {
+    return state.data;
+  } else {
+    return "Fetching...";
+  }
 
+  // 이렇게 사용 가능, OR 단축 평가
+  return state.data || "Fetching...";
+}
 ```
 
 ```javascript
+function favoriteDog(someDog) {
+  let favoriteDog;
+  if (someDog) {
+    favoriteDog = dog;
+  } else {
+    favoriteDog = "냐옹";
+  }
 
+  return favoriteDog + " 입니다.";
+
+  // 이렇게 사용 가능
+  return (someDog || "냐옹") + "입니다.";
+}
 ```
 
 ```javascript
+const getActiveUserName = (user, isLogin) => {
+  if (isLogin) {
+    if (user) {
+      if (user.name) {
+        return user.name;
+      } else {
+        return "이름없음";
+      }
+    }
+  }
 
+  if (isLogin && user) {
+    if (user.name) {
+      return user.name || "이름없음";
+    }
+  }
+};
 ```
 
 ```javascript
