@@ -1584,6 +1584,7 @@ originArray.push(12);
 originArray.unshift(0);
 
 // 원본 배열에 지장을 주기 때문에 새로운 배열로 복사를 해야한다.
+// map(), filter() 등 고차 함수 사용
 ```
 
 ```javascript
