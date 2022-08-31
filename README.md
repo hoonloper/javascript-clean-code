@@ -1674,11 +1674,32 @@ orders.forEach((order) => {
     break;
   }
 })
-
 ```
 
-```javascript
+### Shorthand Properties
 
+Concise Method - 간결한 메서드
+
+```javascript
+const firstName = "jung";
+const lastName = "hoon";
+
+const person = {
+  firstName: "jung",
+  lastName: "hoon",
+  getFullName: () => {
+    return this.firstName + " " + this.lastName;
+  },
+};
+
+// Shorthand Properties
+const person = {
+  firstName,
+  lastName,
+  getFullName() {
+    return this.firstName + " " + this.lastName;
+  },
+};
 ```
 
 ```javascript
