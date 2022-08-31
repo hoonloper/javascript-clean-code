@@ -1657,7 +1657,23 @@ const newPricesForEach = prices.forEach((price) => price + "원");
 const newPricesMap = prices.map((price) => price + "원");
 ```
 
+### continue & break
+
+고차함수에서 continue & break 사용하는 방법
+
+- throw 에러를 발생시켜 try - catch로 잡아준다.
+- for, for in, for of 등을 사용한다.
+- .every(), .some(), .find(), .findIndex() 등과 같이 적절한 메서드를 찾아서 사용한다.
+
 ```javascript
+const orders = ['first', 'second', 'third']
+
+orders.forEach((order) => {
+  if(order === 'second') {
+    continue;
+    break;
+  }
+})
 
 ```
 
