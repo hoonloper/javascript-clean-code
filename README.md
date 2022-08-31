@@ -1643,8 +1643,18 @@ function getWonPrice(priceList) {
 }
 ```
 
-```javascript
+### map vs forEach
 
+언어의 명세에 따라 상황에 맞춰 사용해야 한다.
+
+```javascript
+const price = ["2000", "1000", "3000", "5000", "4000"];
+
+// 함수를 실행
+const newPricesForEach = prices.forEach((price) => price + "원");
+
+// 새로운 배열을 반환
+const newPricesMap = prices.map((price) => price + "원");
 ```
 
 ```javascript
