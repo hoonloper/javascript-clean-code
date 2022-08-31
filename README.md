@@ -1421,7 +1421,8 @@ Array.isArray(arr);
 
 ### Array.length
 
-자바스크립트의 배열은 길이를 보장하지 못한다.
+- 자바스크립트의 배열은 길이를 보장하지 못함.
+- 배열 길이를 다룰 때는 주의해야 함.
 
 ```javascript
 const arr = [1, 2, 3];
@@ -1455,16 +1456,86 @@ arr.length; // 0
 clearArray(arr); // []
 ```
 
-```javascript
+### 배열 요소에 접근하기
 
+```javascript
+function operateTime(input operators, is) {
+  inputs[0].split('').forEach(num => {
+    cy.get('.digit').contains(num).click();
+  })
+
+  inputs[1].split('').forEach(num => {
+    cy.get('.digit').contains(num).click();
+  })
+}
+
+// 예시
+function operateTime(input, operators, is) {
+  // 배열 구조분해할당으로 명시적으로 작성
+  const [firstInput, secondInput] = inputs;
+
+  firstInput.split('').forEach(num => {
+    cy.get('.digit').contains(num).click();
+  })
+
+  secondInput.split('').forEach(num => {
+    cy.get('.digit').contains(num).click();
+  })
+}
+
+// 예시 2, 매개변수 구조분해할당
+function operateTime([firstInput, secondInput], operators, is) {
+  firstInput.split('').forEach(num => {
+    // ~~~
+  })
+
+  secondInput.split('').forEach(num => {
+    // ~~~
+  })
+}
 ```
 
 ```javascript
+function clickGroupButton() {
+  const confirmButton = document.getElementsByTagName("button")[0];
+  const cancelButton = document.getElementsByTagName("button")[1];
+  const resetButton = document.getElementsByTagName("button")[2];
+}
 
+// 예시
+function clickGroupButton() {
+  const [confirmButton, cancelButton, resetButton] =
+    document.getElementsByTagName("button");
+}
 ```
 
 ```javascript
+function formatDate(targetDate) {
+  const date = targetDate.toISOString().split("T")[0];
+  const [year, month, day] = date.split("-");
 
+  return `${year}년 ${month}월 ${day}일`;
+}
+
+// 예시
+function formatDate(targetDate) {
+  const [date] = targetDate.toISOString().split("T");
+  const [year, month, day] = date.split("-");
+
+  return `${year}년 ${month}월 ${day}일`;
+}
+
+// 예시 2
+function head(arr) {
+  return arr[0] ?? "";
+}
+
+function formatDate(targetDate) {
+  const date = head(targetDate.toISOString().split("T"));
+  const [year, month, day] = date.split("-");
+
+  return `${year}년 ${month}월 ${day}일`;
+}
 ```
 
 ```javascript
