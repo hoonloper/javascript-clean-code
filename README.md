@@ -1172,12 +1172,43 @@ function 오늘하루(condition, weather, isJob) {
 }
 ```
 
-```javascript
+### 부정조건문 지양하기
 
+- 생각을 여러번 해야 할 수 있다.
+- 프로그래밍 언어 자체로 if문이 처음부터 오고 true부터 실행시킨다.
+
+부정조건문 사용하는 경우
+
+- Early Return
+- Form Validation
+- 보안 혹은 검사하는 로직
+
+```javascript
+if (!isNaN(3)) {
+  console.log("숫자입니다");
+}
+
+function isNumber(num) {
+  return !Number.isNaN(num) && typeof num === "number";
+}
+
+if (isNumber(3)) {
+  console.log("숫자입니다");
+}
 ```
 
 ```javascript
+// 추천하지 않는 방법
+const isCondition = true;
+const isNotCondition = false;
 
+if (!isCondition) {
+  console.log("거짓인 경우에만 실행");
+}
+
+if (!isNotCondition) {
+  console.log("거짓인 경우에만 실행");
+}
 ```
 
 ```javascript
