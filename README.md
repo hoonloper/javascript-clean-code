@@ -1308,16 +1308,56 @@ function increment() {
 }
 ```
 
-```javascript
+### Nullish coalescing operator
 
+널 병합 연산자를 사용시에 null, undefined만 평가한다는 것을 꼭 기억하고 사용하자.
+
+```javascript
+function createElement(type, height, width) {
+  const element = document.createElement(type || "div");
+
+  element.style.height = (height || 10) + "px";
+  element.style.width = (width || 10) + "px";
+
+  return element;
+}
+
+// 0은 falsy로 처리되기 때문에 OR에서 걸리게 된다.
+createElement("div", 0, 0);
+
+// ?? 연산자는 null or undefined만 평가한다. 널 병합 연산자
+function createElement(type, height, width) {
+  const element = document.createElement(type ?? "div");
+
+  element.style.height = (height ?? 10) + "px";
+  element.style.width = (width ?? 10) + "px";
+
+  return element;
+}
+
+createElement("div", 0, 0);
 ```
 
 ```javascript
+function helloWorld(message) {
+  // Early Return을 사용할 때도 널 병합 연산자를 고려해서 넣어야함.
+  if (!message) {
+    return "Hello! World";
+  }
 
+  return "Hello!" + (message || "World");
+}
+
+function helloWorld(message) {
+  return "Hello!" + (message || "World");
+}
+
+helloWorld(0);
 ```
 
 ```javascript
-
+null || undefined ?? "foo"; // 에러 발생. 사람들의 잦은 실수로 언어에서 규제함.
+(null || undefined) ?? "foo"; // 해결. OR 연산자는 우선순위가 낮음
 ```
 
 ```javascript
