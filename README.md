@@ -1538,6 +1538,94 @@ function formatDate(targetDate) {
 }
 ```
 
+### 유사 배열 객체
+
+```javascript
+const arrayLikeObject = {
+  0: "HELLO",
+  1: "WORLD",
+  length: 2,
+};
+
+const arr = Array.from(arrayLikeObject); // 객체를 배열로 바꿔줌
+Array.isArray(arr); // true
+```
+
+```javascript
+// arguments는 대표적인 유사 배열 객체
+function generatePriceList() {
+  for (let index = 0; index < array.length; index++) {
+    const element = arguments[index];
+
+    console.log(element);
+  }
+
+  return arguments.map((arg) => arg + "원"); // 유사 배열 객체이기 때문에 배열 메소드 에러 발생
+  return Array.from(arguments).map((arg) => arg + "원"); // 배열로 변환 후 사용
+}
+
+generatePriceList(100, 200, 300, 400, 500);
+```
+
+### 불변성 - immutable
+
+불변성 지키기
+
+- 배열을 복사한다.
+- 새로운 배열을 반환하는 메서드들을 활용한다.
+
+```javascript
+const originArray = ["123", "456", "789"];
+const newArray = originArray;
+
+originArray.push(10);
+originArray.push(11);
+originArray.push(12);
+originArray.unshift(0);
+
+// 원본 배열에 지장을 주기 때문에 새로운 배열로 복사를 해야한다.
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
 ```javascript
 
 ```
