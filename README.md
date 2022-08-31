@@ -1587,12 +1587,60 @@ originArray.unshift(0);
 // map(), filter() 등 고차 함수 사용
 ```
 
-```javascript
+### for 문 배열 고차 함수로 리팩터링
 
+```javascript
+// 원화
+const price = ["2000", "1000", "3000", "5000", "4000"];
+
+function getWonPrice(priceList) {
+  let temp = [];
+
+  for (let i = 0; i < priceList.length; i++) {
+    temp.push(priceList[i] + "원");
+  }
+
+  return temp;
+}
+
+// 수정후 코드
+const suffixWon = (price) => price + "원";
+
+function getWonPrice(priceList) {
+  return priceList.map(suffixWon);
+}
+
+// 수정후 코드 + 조건
+const suffixWon = (price) => price + "원";
+const isOverOneThousand = (price) => Number(price) > 1000;
+
+function getWonPrice(priceList) {
+  const isOverList = priceList.filter(isOverOneThousand);
+  return priceList.map(suffixWon);
+}
 ```
 
-```javascript
+### 배열 메서드 체이닝 활용하기
 
+```javascript
+// 수정후 코드 + 조건 + 정렬
+const suffixWon = (price) => price + "원";
+const isOverOneThousand = (price) => Number(price) > 1000;
+const ascendingList = (a, b) => a - b;
+
+function getWonPrice(priceList) {
+  const isOverList = priceList.filter(isOverOneThousand);
+  const sortList = isOverList.sort(ascendingList);
+  return priceList.map(suffixWon);
+}
+
+// 메서드 체이닝 활용
+function getWonPrice(priceList) {
+  return priceList
+    .filter(isOverOneThousand) // 필터
+    .sort(ascendingList) // 정렬
+    .map(suffixWon); // 요소 정리
+}
 ```
 
 ```javascript
