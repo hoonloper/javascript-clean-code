@@ -1419,16 +1419,40 @@ if (typeof arr === "object") {
 Array.isArray(arr);
 ```
 
-```javascript
+### Array.length
 
+자바스크립트의 배열은 길이를 보장하지 못한다.
+
+```javascript
+const arr = [1, 2, 3];
+
+arr.length = 10;
+// [1, 2, 3, , , , , , , ]
 ```
 
 ```javascript
+const arr = [1, 2, 3];
 
+arr[9] = 10;
+// [1, 2, 3, , , , , , , 10]
 ```
 
 ```javascript
+Array.prototype.clear = function () {
+  this.length = 0;
+};
 
+function clearArray(array) {
+  array.length = 0;
+
+  return array;
+}
+
+const arr = [1, 2, 3];
+arr.clear();
+arr.length; // 0
+
+clearArray(arr); // []
 ```
 
 ```javascript
