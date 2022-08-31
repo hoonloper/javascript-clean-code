@@ -1043,8 +1043,41 @@ if (x >= 0) {
 }
 ```
 
-```javascript
+### else 피하기
 
+```javascript
+function getActiveUserName(user) {
+  if (user.name) {
+    return user.name;
+  } else {
+    return "이름없음";
+  }
+
+  // 이렇게 사용 가능
+  if (user.name) {
+    return user.name;
+  }
+
+  return "이름없음";
+}
+```
+
+```javascript
+// age가 20 미만시 특수 함수 실행
+function getHelloCustomer(user) {
+  if (user.age < 20) {
+    report(user);
+  } else {
+    return "안녕하세요.";
+  }
+
+  // 인사는 어떠한 경우에도 출력해야 하기에 else 지우기
+  if (user.age < 20) {
+    report(user);
+  }
+
+  return "안녕하세요.";
+}
 ```
 
 ```javascript
