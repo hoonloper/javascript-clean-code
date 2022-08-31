@@ -1019,12 +1019,28 @@ const getActiveUserName = (user, isLogin) => {
 };
 ```
 
+### else if & else 피하기
+
+else if를 이어서 사용하기보다 else와 if를 분리해주고 조건식이 많아지면 switch 문을 활용하자.
+
 ```javascript
+const x = 1;
 
-```
+if (x >= 0) {
+  ("x는 0과 같거나 크다");
+} else if (x > 0) {
+  ("x는 0보다 크다");
+} else {
+  ("Else");
+}
 
-```javascript
-
+if (x >= 0) {
+  ("x는 0과 같거나 크다");
+} else {
+  if (x > 0) {
+    ("x는 0보다 크다");
+  }
+}
 ```
 
 ```javascript
