@@ -1360,8 +1360,25 @@ null || undefined ?? "foo"; // 에러 발생. 사람들의 잦은 실수로 언�
 (null || undefined) ?? "foo"; // 해결. OR 연산자는 우선순위가 낮음
 ```
 
-```javascript
+### 드모르간의 법칙
 
+- true is not true
+- false is not false
+
+```javascript
+const isValidUser = false;
+const isValidToken = false;
+
+// 로그인 성공을 실패로 바꾸는 과정
+if (isValidToken && isValidUser) {
+  console.log("로그인 성공!");
+}
+if (!(isValidToken && isValidUser)) {
+  console.log("로그인 실패!");
+}
+if (!isValidToken || !isValidUser) {
+  console.log("로그인 실패!");
+}
 ```
 
 ```javascript
