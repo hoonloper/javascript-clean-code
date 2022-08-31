@@ -1283,8 +1283,29 @@ function safeParseInt(number, radix) {
 }
 ```
 
-```javascript
+### 명시적인 연산자 사용 지향하기
 
+'()'를 통해 연산자 우선순위를 표현해주자.
+
+- 몸무게 % (신장 \* 신장)
+
+예측 가능하고 디버깅 하기 쉽다.
+
+```javascript
+let number;
+
+function increment() {
+  number--;
+  --number;
+
+  number = number - 1;
+}
+function increment() {
+  number++;
+  ++number;
+
+  number = number + 1;
+}
 ```
 
 ```javascript
