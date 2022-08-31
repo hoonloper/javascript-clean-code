@@ -867,16 +867,95 @@ function alertMessage(isAdult) {
 const isAdult = age > 19 ? "yes" : "no";
 ```
 
-```javascript
+### Truthy & Falsy
 
+```javascript
+if ("string".length > 0) {
+}
+
+if (!isNaN(10)) {
+}
+
+if (boolean === true) {
+}
+
+// 참이기 때문에 Truthy가 없어도 동작함
+if ("string".length) {
+}
+
+if (10) {
+}
+
+if (boolean) {
+}
+```
+
+##### 참 같은 값
+
+```javascript
+if (true)
+if ({})
+if ([])
+if (42)
+if ("0")
+if ("false")
+if (new Date())
+if (-42)
+if (12n)
+if (3.14)
+if (-3.14)
+if (Infinity)
+if (-Infinity)
+```
+
+##### 거짓 같은 값
+
+```javascript
+if (false)
+if (null)
+if (undefined)
+if (0)
+if (-0)
+if (0n)
+if (NaN)
+if ("")
 ```
 
 ```javascript
+function printName(name) {
+  if (name === undefined || name === null) {
+    return "사람이 없네요";
+  }
 
+  // 수정한 코드
+  if (!name) {
+    return "사람이 없네요";
+  }
+
+  return "안녕하세요 " + name + "님";
+}
 ```
 
 ```javascript
+/**
+ * Truthy (참 같은 값)
+ */
+function SomeComponent({ isShowHeader }) {
+  return (
+    <div>
+      {isShowHeader ? <Header /> : null}
+      <Body />
+    </div>
+  );
+}
 
+function SomeComponent({ content }) {
+  return (
+    <div>
+      {content.length > 0 ? <MessageList messages={props.messages} /> : null}
+    </div>
+  );
+}
 ```
 
 ```javascript
