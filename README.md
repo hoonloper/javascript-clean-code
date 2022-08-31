@@ -1211,20 +1211,76 @@ if (!isNotCondition) {
 }
 ```
 
-```javascript
+### Default case 고려하기
 
+기본값을 정해놓는 경우를 생각해야 함.
+
+```javascript
+function sum(x, y) {
+  return x + y;
+}
+
+// 디폴트값 추가
+function sum(x, y) {
+  x = x || 1;
+  y = y || 1;
+
+  return x + y;
+}
+
+// 매개변수에 추가
+function sum(x = 1, y = 1) {
+  return x + y;
+}
+
+sum(100, 200);
 ```
 
 ```javascript
+function createElement(type, height, width) {
+  const element = document.createElement(type);
 
+  element.style.height = height;
+  element.style.width = width;
+
+  return element;
+}
+
+// div를 기본으로 사용하고 싶을 때
+function createElement(type, height, width) {
+  const element = document.createElement(type || "div");
+
+  element.style.height = height || 100;
+  element.style.width = width || 100;
+
+  return element;
+}
+
+createElement();
 ```
 
 ```javascript
-
+function registerDay(userInputDay) {
+  switch (userInputDay) {
+    case "월요일":
+    case "화요일":
+    case "수요일":
+    case "목요일":
+    case "금요일":
+    case "토요일":
+    case "일요일":
+    default:
+      throw Error("");
+  }
+}
+registerDay("월ㄹ요일"); // 오타 입력의 경우를 생각해서 처리해줘야 함
 ```
 
 ```javascript
-
+// 만들어져있는 함수에 기본값 넣기
+function safeParseInt(number, radix) {
+  return parseInt(number, radix || 10);
+}
 ```
 
 ```javascript
