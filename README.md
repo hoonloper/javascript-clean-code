@@ -1381,6 +1381,64 @@ if (!isValidToken || !isValidUser) {
 }
 ```
 
+### JavaScript의 배열은 객체다.
+
+```javascript
+const arr = [1, 2, 3];
+
+arr[3] = "test";
+arr["property"] = "string value";
+arr["obj"] = {};
+arr[{}] = [1, 2, 3];
+arr["func"] = function () {
+  return "hello";
+};
+
+for (let i = 0; i < arr.length; i++) {
+  console.log(arr[i]);
+}
+
+// console => 1 2 3
+
+console.log(arr);
+// console [1, 2, 3, 'test', property: 'string value', obj: {}, '[object Object]': [1, 2, 3], func: [F]]
+```
+
+```javascript
+const arr = [1, 2, 3];
+
+if (arr.length) {
+  console.log("배열 확인");
+}
+
+if (typeof arr === "object") {
+  console.log("배열 확인");
+}
+
+// 배열 검사
+Array.isArray(arr);
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
 ```javascript
 
 ```
