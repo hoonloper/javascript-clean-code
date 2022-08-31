@@ -1080,12 +1080,96 @@ function getHelloCustomer(user) {
 }
 ```
 
-```javascript
+### Early Return
 
+```javascript
+function loginService(isLogin, user) {
+  if (!isLogin) {
+    if (checkToken()) {
+      if (!user.nickName) {
+        return registerUser(user);
+      } else {
+        refreshToken();
+
+        return "로그인 성공";
+      }
+    } else {
+      throw new Error("No Token");
+    }
+  }
+}
+
+// 수정한 코드
+function loginService(isLogin, user) {
+  // Early Return, 함수 미리 종료
+  if (isLogin) {
+    return;
+  }
+
+  if (checkToken()) {
+    throw new Error("No Token");
+  }
+
+  if (!user.nickName) {
+    return registerUser(user);
+  }
+
+  // 실행 부분이 명확해짐
+  login();
+}
+
+function login() {
+  refreshToken();
+
+  return "로그인 성공";
+}
 ```
 
 ```javascript
+function 오늘하루(condition, weather, isJob) {
+  if (condition === "GOOD") {
+    공부();
+    게임();
+    유튜브보기();
 
+    if (weather === "GOOD") {
+      운동();
+      빨래();
+    }
+
+    if (isJob === "GOOD") {
+      야간업무();
+      조기취침();
+    }
+  }
+}
+
+// 수정후 코드
+function 오늘하루(condition, weather, isJob) {
+  // 의존성에 따라 분기를 바로 뺄지 아니면 하나의 분기에서 모든 로직을 처리할지 판단해야 한다.
+  // 수많은 Early return을 만드는 것은 좋지 않으나 하나의 조건에만 의존성이 걸려있을 때 사용하면 명시적으로 변할 수 있다
+  if (condition !== "GOOD") {
+    return;
+  }
+
+  공부();
+  게임();
+  유튜브보기();
+
+  if (weather === "GOOD") {
+    return;
+  }
+
+  운동();
+  빨래();
+
+  if (isJob === "GOOD") {
+    return;
+  }
+
+  야간업무();
+  조기취침();
+}
 ```
 
 ```javascript
