@@ -2204,8 +2204,28 @@ createCarousel({
 });
 ```
 
-```javascript
+### Rest Parameters
 
+```javascript
+function sumTotal() {
+  return Array.from(arguments).reduce((acc, cur) => acc + cur);
+}
+
+sumTotal(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+// 수정후 코드
+function sumTotal(...args) {
+  return args.reduce((acc, cur) => acc + cur);
+}
+
+sumTotal(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+// 수정후 코드 - 추가 매개변수를 받을 수 있음
+function sumTotal(initValue, ...args) {
+  return args.reduce((acc, cur) => acc + cur, initValue);
+}
+
+sumTotal(100, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 ```
 
 ```javascript
