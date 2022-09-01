@@ -2228,12 +2228,39 @@ function sumTotal(initValue, ...args) {
 sumTotal(100, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 ```
 
-```javascript
+### void & return
 
+```javascript
+// alert, setState는 return이 필요없는 void 함수
+function handleClick() {
+  return setState(false);
+}
+
+function showAlert(message) {
+  return alert(message);
+}
+
+// return이 없어 최종적으로 undefined 출력
+function test(sum1, sum2) {
+  const result = sum1 + sum2;
+}
+
+function testVoidFunc() {
+  return test(1, 2);
+}
+
+testVoidFunc();
 ```
 
 ```javascript
+// 반환이 있을법한 이름의 함수들
+function isAdult(age) {
+  return age > 19;
+}
 
+function getUserName(name) {
+  return "유저 " + name;
+}
 ```
 
 ```javascript
