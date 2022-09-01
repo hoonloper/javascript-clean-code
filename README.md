@@ -1829,8 +1829,63 @@ ReactDOM.render(
 )
 ```
 
-```javascript
+### Object freeze
 
+객체를 동결한다.
+
+객체의 동결 확인은 Object.isFrozen을 사용하면 가능하다.
+
+대중적인 유틸 라이브러리를 사용하거나 직접 유틸 함수를 생성하면 깊은 얼리기를 할 수 있다.
+
+Typescript에서는 readonly가 그 역할을 한다.
+
+```javascript
+const STATUS = {
+  PENDING: "PENDING",
+  SUCCESS: "SUCCESS",
+  FAIL: "FAIL",
+};
+
+// Object 얼리기!
+const STATUS = Object.freeze({
+  PENDING: "PENDING",
+  SUCCESS: "SUCCESS",
+  FAIL: "FAIL",
+});
+
+// 얕은 얼리기
+const STATUS = Object.freeze({
+  PENDING: "PENDING",
+  SUCCESS: "SUCCESS",
+  FAIL: "FAIL",
+  OPTIONS: {
+    GREEN: "GREEN",
+    RED: "RED",
+  },
+});
+
+STATUS.OPTIONS;
+
+Object.isFrozen(Object.OPTIONS); // 얕은 얼리기로 false 출력
+
+// 깊은 얼리기 함수
+function deepFreeze(targetObj) {
+  /*
+  1. 객체를 순회
+  2. 값이 객체인지 확인
+  3. 객체이면 재귀
+  4. 객체가 아니면 Object.freeze();
+  */
+
+ // Ex
+ Object.keys(targetObj).forEach(key => {
+  if(/* 객체가 맞다면 */) {
+    deepFreeze(targetObj[key]);
+  }
+ })
+
+ return Object.freeze(targetObj)
+}
 ```
 
 ```javascript
