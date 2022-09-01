@@ -2049,7 +2049,7 @@ class Func {
 }
 ```
 
-### Argument & parameter
+### Argument & Parameter
 
 ```javascript
 // 출처 : MDN
@@ -2060,6 +2060,131 @@ function example(parameter) {
 const argument = "foo";
 
 example(argument);
+```
+
+### 복잡한 인자 관리하기
+
+```javascript
+/* isToggle을 통해 어떤 기능의 함수인지 유추 가능 */
+function toggleDisplay(isToggle) {
+  // ...some code
+}
+
+/* 두 가지 값을 더하는 걸 유추할 수 있다.*/
+function sum(sum1, sum2) {
+  // ...some code
+}
+
+/* 최소, 최대 랜덤값 유추 가능 */
+function genRandomNumber(min, max) {
+  // ...some code
+}
+
+/* 3개의 인자여도 명시적인 코드를 작성할 수 있으면 괜찮음 */
+function timer(start, stop, end) {
+  // ...some code
+}
+
+/* 사각형과 같이 인자가 4개가 필요하더라도 명시적이면 괜찮음 */
+function genSquare(top, right, bottom, left) {
+  // ...some code
+}
+```
+
+```javascript
+// 각 인자에 맞는 위치를 확인해야 하는 번거로움이 있음
+function createCar(name, brand, color, type) {
+  return {
+    name,
+    brand,
+    color,
+    type,
+  };
+}
+
+// 수정후 코드
+// 구조분해할당을 사용하면 순서를 신경쓰지 않아도 된다.
+function createCar({ name, brand, color, type }) {
+  return {
+    name,
+    brand,
+    color,
+    type,
+  };
+}
+
+// 중요한 데이터의 경우 고정적으로 넣어주고 선택적 요소들은 옵션 형식으로 넣어준다.
+function createCar(name, { brand, color, type }) {
+  return {
+    name,
+    brand,
+    color,
+    type,
+  };
+}
+
+createCar("car", {});
+```
+
+```javascript
+// undefined로 들어올 수 있는 값들은 분기 처리를 해줘야 함.
+function createCar({ name, brand, color, type }) {
+  if (!name) {
+    throw new Error("name is a required");
+  }
+
+  if (!brand) {
+    throw new Error("brand is a required");
+  }
+}
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
 ```
 
 ```javascript
