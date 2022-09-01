@@ -2139,8 +2139,69 @@ function createCar({ name, brand, color, type }) {
 }
 ```
 
-```javascript
+### Default Value
 
+```javascript
+// 고전적인 코드의 예
+function createCarousel(options) {
+  options = options || {}; // undefined 방어 코드
+
+  // nullish 방어 코드
+  var margin = options.margin || 0;
+  var center = options.center || false;
+  var navElement = options.navElement || "div";
+
+  // ..some code
+  return {
+    margin,
+    center,
+    navElement,
+  };
+}
+
+createCarousel();
+
+// 수정후 코드
+// default parameter
+function createCarousel({
+  margin = 0,
+  center = false,
+  navElement = "div",
+} = {}) {
+  // ..some code
+  return {
+    margin,
+    center,
+    navElement,
+  };
+}
+
+createCarousel();
+
+// throw error to default parameter
+const required = (argName) => {
+  throw new Error("required is " + argName);
+};
+
+function createCarousel({
+  items = required("items"),
+  margin = 0,
+  center = false,
+  navElement = "div",
+} = {}) {
+  // ... some code
+  return {
+    margin,
+    center,
+    navElement,
+  };
+}
+
+createCarousel({
+  margin: 10,
+  center: true,
+  navElement: "span",
+});
 ```
 
 ```javascript
