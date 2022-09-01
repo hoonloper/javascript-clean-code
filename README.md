@@ -1755,6 +1755,96 @@ function getUserType(type) {
 }
 ```
 
+### Object Destructuring
+
+객체의 구조분해할당
+
+인자가 3개 이상일 때 보통 사용
+
+객체 구조분해할당을 통해 명시적인 코드를 작성할 수 있다.
+
+```javascript
+function Person(name, age, location) {
+  this.name = name;
+  this.age = age;
+  this.location = location;
+}
+
+const yh = new Person("yh", 25, "korea");
+
+// 수정후 코드
+function Person({ name, age, location }) {
+  this.name = name;
+  this.age = age;
+  this.location = location;
+}
+
+const yh = new Person({ name: "yh", age: 25, location: "korea" });
+
+// 수정후 코드
+function Person(name, { age, location }) {
+  this.name = name;
+  this.age = age;
+  this.location = location;
+}
+
+const yhOptions = { age: 25, location: "korea" };
+const yh = new Person("yh", yhOptions);
+```
+
+```javascript
+const orders = ["first", "second", "third"];
+
+const st = orders[0];
+const rd = orders[2];
+
+const [first, , third] = orders;
+
+// 객체로 수정후 코드
+const { 0: st2, 2: rd2 } = orders;
+```
+
+```javascript
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>
+}
+
+const element = <Welcome name="Sara" />;
+
+ReactDOM.render(
+  element,
+  document.getElementById('root');
+)
+
+// 수정후 코드
+function Welcome({ name }) {
+  return <h1>Hello, {name}</h1>
+}
+
+const element = <Welcome name="Sara" />;
+
+ReactDOM.render(
+  element,
+  document.getElementById('root');
+)
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
+```javascript
+
+```
+
 ```javascript
 
 ```
