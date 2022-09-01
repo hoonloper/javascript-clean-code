@@ -1948,8 +1948,46 @@ function hasOwnProp(targetObj, targetProp) {
 }
 ```
 
-```javascript
+### 직접 접근 지양하기
 
+예측 가능한 코드를 작성해서 동작이 예측 가능한 앱을 개발하자
+
+```javascript
+const model = {
+  isLogin: false,
+  isValidToken: false,
+};
+
+function login() {
+  model.isLogin = true;
+  model.isValidToken = true;
+}
+
+function logout() {
+  model.isLogin = false;
+  model.isValidToken = false;
+}
+
+someElement.addEventListener("click", login);
+
+// model이라는 객체를 접근하기 너무 용이하기에 함수로 뺴준다.
+function setLogin(bool) {
+  model.isLogin = bool;
+}
+
+function setValidToken(bool) {
+  model.isValidToken = bool;
+}
+
+function login() {
+  setLogin(true);
+  setValidToken(true);
+}
+
+function logout() {
+  setLogin(false);
+  setValidToken(false);
+}
 ```
 
 ```javascript
