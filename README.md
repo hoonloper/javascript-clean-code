@@ -1923,8 +1923,29 @@ class Car {
 const casper = new Car("캐스퍼", "현대");
 ```
 
-```javascript
+### hasOwnProperty
 
+```javascript
+const person = {
+  name: "yh",
+};
+
+person.hasOwnProperty("jyh"); // 있으면 true, 없으면 false
+
+const foo = {
+  hasOwnProperty: function () {
+    return false;
+  },
+  bar: "~~~~",
+};
+
+foo.hasOwnProperty("bar"); // false, hasOwnProperty는 함수명을 보호하지 않음
+Object.prototype.hasOwnProperty.call(foo, "bar"); // prototype으로 접근해서 사용하면 정상 동작
+
+// 함수화
+function hasOwnProp(targetObj, targetProp) {
+  return Object.prototype.hasOwnProperty.call(targetObj, targetProp);
+}
 ```
 
 ```javascript
