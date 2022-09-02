@@ -2834,12 +2834,73 @@ function login() {
 }
 ```
 
-```javascript
+#### 순수 함수
 
+side effect와 같은 부작용을 발생시키지 않는 함수를 순수 함수라 한다.
+
+함수를 호출할 때마다 동일한 값을 뱉어야 하는데 누군가 임의적으로 값을 바꿔 함수의 호출된 값이 달라지면 안된다.
+
+```javascript
+let num1 = 10;
+let num2 = 20;
+
+function impureSum1() {
+  return num1 + num2;
+}
+
+function impureSum2(newNum) {
+  return num1 + newNum;
+}
+
+impureSum1(); // 30
+impureSum1(); // 30
+num1 = 30;
+impureSum1(); // 50
+
+impureSum2(10); // 40
+num1 = 100;
+impureSum2(10); // 110
+
+// Pure Function
+function pureSum(num1, num2) {
+  return num1 + num2;
+}
+
+pureSum(10, 20); // 30
+pureSum(10, 20); // 30
+pureSum(30, 100); // 130
+pureSum(30, 100); // 130
 ```
 
 ```javascript
+function changeValue(num) {
+  num++;
 
+  return num;
+}
+
+changeValue(1); // 2
+
+// 객체 테스트
+const obj = { one: 1 };
+
+function changeObj(targetObj) {
+  targetObj.one = 100;
+
+  return targetObj;
+}
+
+changeObj(obj); // { one: 100 }
+console.log(obj); // { one: 100 } 기존 객체의 데이터가 바뀜
+
+// primitive type vs reference type을 공부하면 좋음
+// 객체, 배열을 조작하는 함수를 만들 때는 새롭게 만들어서 반환
+function changeObj(targetObj) {
+  return { ...targetObj, one: 100 };
+}
+
+changeObj(obj); // { one: 100 }
+console.log(obj); // { one: 1 }
 ```
 
 ```javascript
