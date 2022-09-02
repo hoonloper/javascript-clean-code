@@ -2766,8 +2766,72 @@ new Child().childMethod();
 new Child().overrideMethod(); // 부모의 메서드가 호출됨
 ```
 
-```javascript
+#### Callback function
 
+콜백 함수는 장풍을 유도하고, async await을 통해 비동기를 제어하는 기법이다 라고 생각할 수 있다.
+
+콜백 함수는 함수의 실행권을 다른 함수에 위임하는 것으로도 생각할 수 있다.
+
+```javascript
+// Callback function 사례
+someElement.addEventListener("click", function (e) {
+  console.log(someElement + "이 클릭되었습니다.");
+});
+
+// addEventListener 콜백 함수 예시
+DOM.prototype.addEventListener = function (eventType, cbFunc) {
+  if (eventType === "click") {
+    const clickEventObject = {
+      target: {},
+    };
+
+    cbFunc(clickEventObject);
+  }
+};
+
+// 회원가입
+function register() {
+  const isConfirm = confirm("회원가입에 성공했습니다.");
+
+  if (isConfirm) {
+    redirectUserInfoPage();
+  }
+}
+
+// 로그인
+function login() {
+  const isConfirm = alert("로그인에 성공했습니다.");
+
+  if (isConfirm) {
+    redirectIndexPage();
+  }
+}
+
+// 공통의 Callback function
+function confirmModal(
+  message,
+  cnFunc = () => {
+    throw Error("error");
+  }
+) {
+  const isConfirm = alert(message);
+
+  if (isConfirm && cbFunc) {
+    cbFunc();
+  }
+}
+
+// 수정후 코드
+// Callback function은 함수를 인자에 실행시키는 게 아닌 함수 자체를 넘긴다.
+// 회원가입
+function register() {
+  confirmModal("회원가입에 성공했습니다.", redirectUserInfoPage);
+}
+
+// 로그인
+function login() {
+  confirmModal("로그인에 성공했습니다.", redirectIndexPage);
+}
 ```
 
 ```javascript
