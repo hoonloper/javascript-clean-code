@@ -1819,225 +1819,140 @@ function getUserType(type) {
 ```javascript
 function Person(name, age, location) {
   this.name = name;
-
   this.age = age;
-
   this.location = location;
 }
 
 const yh = new Person("yh", 25, "korea");
 
 // 수정후 코드
-
 function Person({ name, age, location }) {
   this.name = name;
-
   this.age = age;
-
   this.location = location;
 }
 
 const yh = new Person({ name: "yh", age: 25, location: "korea" });
 
 // 수정후 코드
-
 function Person(name, { age, location }) {
   this.name = name;
-
   this.age = age;
-
   this.location = location;
 }
 
 const yhOptions = { age: 25, location: "korea" };
-
 const yh = new Person("yh", yhOptions);
 ```
 
 ```javascript
 const orders = ["first", "second", "third"];
-
 const st = orders[0];
-
 const rd = orders[2];
-
 const [first, , third] = orders;
 
 // 객체로 수정후 코드
-
 const { 0: st2, 2: rd2 } = orders;
 ```
 
 ```javascript
-
 function Welcome(props) {
-
-return <h1>Hello, {props.name}</h1>
-
+  return <h1>Hello, {props.name}</h1>
 }
-
-
 
 const element = <Welcome name="Sara" />;
 
-
-
 ReactDOM.render(
-
-element,
-
-document.getElementById('root');
-
+  element,
+  document.getElementById('root');
 )
-
-
 
 // 수정후 코드
-
 function Welcome({ name }) {
-
-return <h1>Hello, {name}</h1>
-
+  return <h1>Hello, {name}</h1>
 }
-
-
 
 const element = <Welcome name="Sara" />;
 
-
-
 ReactDOM.render(
-
-element,
-
-document.getElementById('root');
-
+  element,
+  document.getElementById('root');
 )
-
 ```
 
-### Object freeze
+#### Object freeze
 
-객체를 동결한다.
-
-객체의 동결 확인은 Object.isFrozen을 사용하면 가능하다.
-
-대중적인 유틸 라이브러리를 사용하거나 직접 유틸 함수를 생성하면 깊은 얼리기를 할 수 있다.
-
-Typescript에서는 readonly가 그 역할을 한다.
+- 객체를 동결합니다.
+- 객체의 동결 확인은 Object.isFrozen을 사용하면 가능합니다.
+- 대중적인 유틸 라이브러리를 사용하거나 직접 유틸 함수를 생성하면 깊은 얼리기를 할 수 있습니다.
+- Typescript에서는 readonly가 그 역할을 합니다.
 
 ```javascript
 
 const STATUS = {
-
-PENDING: "PENDING",
-
-SUCCESS: "SUCCESS",
-
-FAIL: "FAIL",
-
+  PENDING: "PENDING",
+  SUCCESS: "SUCCESS",
+  FAIL: "FAIL",
 };
 
-
-
 // Object 얼리기!
-
 const STATUS = Object.freeze({
-
-PENDING: "PENDING",
-
-SUCCESS: "SUCCESS",
-
-FAIL: "FAIL",
-
+  PENDING: "PENDING",
+  SUCCESS: "SUCCESS",
+  FAIL: "FAIL",
 });
-
-
 
 // 얕은 얼리기
-
 const STATUS = Object.freeze({
-
-PENDING: "PENDING",
-
-SUCCESS: "SUCCESS",
-
-FAIL: "FAIL",
-
-OPTIONS: {
-
-GREEN: "GREEN",
-
-RED: "RED",
-
-},
-
+  PENDING: "PENDING",
+  SUCCESS: "SUCCESS",
+  FAIL: "FAIL",
+  // 옵션은 얼려지지 않습니다.
+  OPTIONS: {
+    GREEN: "GREEN",
+    RED: "RED",
+  },
 });
-
-
 
 STATUS.OPTIONS;
 
-
-
 Object.isFrozen(Object.OPTIONS); // 얕은 얼리기로 false 출력
 
-
-
 // 깊은 얼리기 함수
-
 function deepFreeze(targetObj) {
 
 /*
-
-1. 객체를 순회
-
-2. 값이 객체인지 확인
-
-3. 객체이면 재귀
-
+1. 객체를 순회합니다.
+2. 값이 객체인지 확인합니다.
+3. 객체이면 재귀합니다.
 4. 객체가 아니면 Object.freeze();
-
 */
 
-
-
 // Ex
-
 Object.keys(targetObj).forEach(key => {
-
-if(/* 객체가 맞다면 */) {
-
-deepFreeze(targetObj[key]);
-
-}
-
+  if(/* 객체가 맞다면 */) {
+    deepFreeze(targetObj[key]);
+  }
 })
 
-
-
 return Object.freeze(targetObj)
-
 }
 
 ```
 
-### Prototype 조작 지양하기
+#### Prototype 조작 지양하기
 
-프로토타입을 조작하는 것은 아주 강력하며, 위험함.
+프로토타입을 조작하는 것은 아주 강력하며, 위험합니다.
 
-예를들어 .map(), .forEach()등과 같은 메서드를 덮어씌우면 심각한 에러를 초래할 수 있음
+예를들어 .map(), .forEach()등과 같은 메서드를 덮어씌우면 심각한 에러를 초래할 수 있습니다.
 
 - JS 언어 발전
-
 - JS 빌트인 객체를 건드리지 말자
 
 ```javascript
 // 구 시대 생성자 함수 생성법
-
 function Car(name, brand) {
   this.name = name;
-
   this.brand = brand;
 }
 
@@ -2046,11 +1961,9 @@ Car.prototype.sayName = function () {
 };
 
 // JS 발전으로 인해 class 사용 가능
-
 class Car {
   constructor(name, brand) {
     this.name = name;
-
     this.brand = brand;
   }
 
@@ -2062,7 +1975,7 @@ class Car {
 const casper = new Car("캐스퍼", "현대");
 ```
 
-### hasOwnProperty
+#### hasOwnProperty
 
 ```javascript
 const person = {
@@ -2079,44 +1992,39 @@ const foo = {
   bar: "~~~~",
 };
 
-foo.hasOwnProperty("bar"); // false, hasOwnProperty는 함수명을 보호하지 않음
+foo.hasOwnProperty("bar"); // false, hasOwnProperty는 함수명을 보호하지 않습니다.
 
-Object.prototype.hasOwnProperty.call(foo, "bar"); // prototype으로 접근해서 사용하면 정상 동작
+Object.prototype.hasOwnProperty.call(foo, "bar"); // prototype으로 접근해서 사용하면 정상 동작합니다.
 
 // 함수화
-
 function hasOwnProp(targetObj, targetProp) {
   return Object.prototype.hasOwnProperty.call(targetObj, targetProp);
 }
 ```
 
-### 직접 접근 지양하기
+#### 직접 접근 지양하기
 
-예측 가능한 코드를 작성해서 동작이 예측 가능한 앱을 개발하자
+예측 가능한 코드를 작성해서 동작이 예측 가능한 앱을 개발합니다.
 
 ```javascript
 const model = {
   isLogin: false,
-
   isValidToken: false,
 };
 
 function login() {
   model.isLogin = true;
-
   model.isValidToken = true;
 }
 
 function logout() {
   model.isLogin = false;
-
   model.isValidToken = false;
 }
 
 someElement.addEventListener("click", login);
 
-// model이라는 객체를 접근하기 너무 용이하기에 함수로 뺴준다.
-
+// model이라는 객체를 접근하기 너무 용이하기에 함수로 뺴줍니다.
 function setLogin(bool) {
   model.isLogin = bool;
 }
@@ -2127,44 +2035,26 @@ function setValidToken(bool) {
 
 function login() {
   setLogin(true);
-
   setValidToken(true);
 }
 
 function logout() {
   setLogin(false);
-
   setValidToken(false);
 }
 ```
 
-### Optional Chaining
-
-```javascript
-
-```
-
-### Extends & Mixin
-
-```javascript
-
-```
-
-### 함수, 메서드, 생성자
+#### 함수, 메서드, 생성자
 
 ##### 함수란?
 
 - func();
-
 - 1급 객체
-
 - 변수나, 데이터에 담길 수 있다.
-
 - 매개변수로 전달 가능 (콜백 함수)
-
 - 함수가 함수를 반환 혹은 매개변수로 받을 수 있음 (고차 함수)
 
-##### 메서드 => 객체에 의존성이 있는 함수, OOP 행동을 의미
+##### 메서드 => 객체에 의존성이 있는 함수, OOP 행동을 의미합니다.
 
 - obj.method();
 
@@ -2173,66 +2063,37 @@ function logout() {
 - const instance = new Func();
 
 ```javascript
-
 // 함수
-
 function func() {
-
-return this;
-
+  return this;
 }
-
-
 
 // 객체의 메서드
-
 const obj = {
-
-method() {
-
-return this;
-
-},
-
-conciseMethod: function () {
-
-// 간결하게 보여주기 가능
-
-return this;
-
-},
-
+  method() {
+    return this;
+  },
+  conciseMethod: function () {
+    // 간결하게 보여주기 가능
+    return this;
+  },
 };
 
-
-
 // 생성자 함수 (Class)
-
 function Func() {
-
-return this;
-
+  return this;
 }
-
-
 
 class Func {
-
-constructor() {
-
-this.
-
+  constructor() {
+    this.~~~
+  }
 }
-
-}
-
 ```
 
-### Argument & Parameter
+#### Argument & Parameter
 
 ```javascript
-// 출처 : MDN
-
 function example(parameter) {
   console.log(parameter); // Output = foo
 }
@@ -2242,81 +2103,63 @@ const argument = "foo";
 example(argument);
 ```
 
-### 복잡한 인자 관리하기
+#### 복잡한 인자 관리하기
 
 ```javascript
-/* isToggle을 통해 어떤 기능의 함수인지 유추 가능 */
-
+/* isToggle을 통해 어떤 기능의 함수인지 유추 가능합니다. */
 function toggleDisplay(isToggle) {
-  // ...some code
+  // ... 코드
 }
 
-/* 두 가지 값을 더하는 걸 유추할 수 있다.*/
-
+/* 두 가지 값을 더하는 걸 유추할 수 있습니다.*/
 function sum(sum1, sum2) {
-  // ...some code
+  // ... 코드
 }
 
-/* 최소, 최대 랜덤값 유추 가능 */
-
+/* 최소, 최대 랜덤값 유추 가능합니다. */
 function genRandomNumber(min, max) {
-  // ...some code
+  // ... 코드
 }
 
-/* 3개의 인자여도 명시적인 코드를 작성할 수 있으면 괜찮음 */
-
+/* 3개의 인자여도 명시적인 코드를 작성할 수 있으면 괜찮습니다. */
 function timer(start, stop, end) {
-  // ...some code
+  // ... 코드
 }
 
-/* 사각형과 같이 인자가 4개가 필요하더라도 명시적이면 괜찮음 */
-
+/* 사각형과 같이 인자가 4개가 필요하더라도 명시적이면 괜찮습니다. */
 function genSquare(top, right, bottom, left) {
-  // ...some code
+  // ... 코드
 }
 ```
 
 ```javascript
-// 각 인자에 맞는 위치를 확인해야 하는 번거로움이 있음
-
+// 각 인자에 맞는 위치를 확인해야 하는 번거로움이 있습니다.
 function createCar(name, brand, color, type) {
   return {
     name,
-
     brand,
-
     color,
-
     type,
   };
 }
 
 // 수정후 코드
-
-// 구조분해할당을 사용하면 순서를 신경쓰지 않아도 된다.
-
+// 구조분해할당을 사용하면 순서를 신경쓰지 않아도 됩니다.
 function createCar({ name, brand, color, type }) {
   return {
     name,
-
     brand,
-
     color,
-
     type,
   };
 }
 
 // 중요한 데이터의 경우 고정적으로 넣어주고 선택적 요소들은 옵션 형식으로 넣어준다.
-
 function createCar(name, { brand, color, type }) {
   return {
     name,
-
     brand,
-
     color,
-
     type,
   };
 }
@@ -2325,8 +2168,7 @@ createCar("car", {});
 ```
 
 ```javascript
-// undefined로 들어올 수 있는 값들은 분기 처리를 해줘야 함.
-
+// undefined로 들어올 수 있는 값들은 분기 처리를 해줘야 합니다.
 function createCar({ name, brand, color, type }) {
   if (!name) {
     throw new Error("name is a required");
@@ -2338,29 +2180,23 @@ function createCar({ name, brand, color, type }) {
 }
 ```
 
-### Default Value
+#### Default Value
 
 ```javascript
 // 고전적인 코드의 예
-
 function createCarousel(options) {
   options = options || {}; // undefined 방어 코드
 
   // nullish 방어 코드
-
   var margin = options.margin || 0;
-
   var center = options.center || false;
-
   var navElement = options.navElement || "div";
 
-  // ..some code
+  // ... 코드
 
   return {
     margin,
-
     center,
-
     navElement,
   };
 }
@@ -2368,23 +2204,17 @@ function createCarousel(options) {
 createCarousel();
 
 // 수정후 코드
-
 // default parameter
-
 function createCarousel({
   margin = 0,
-
   center = false,
-
   navElement = "div",
 } = {}) {
-  // ..some code
+  // .. 코드
 
   return {
     margin,
-
     center,
-
     navElement,
   };
 }
@@ -2392,41 +2222,33 @@ function createCarousel({
 createCarousel();
 
 // throw error to default parameter
-
 const required = (argName) => {
   throw new Error("required is " + argName);
 };
 
 function createCarousel({
   items = required("items"),
-
   margin = 0,
-
   center = false,
-
   navElement = "div",
 } = {}) {
-  // ... some code
+  // ...  코드
 
   return {
     margin,
-
     center,
-
     navElement,
   };
 }
 
 createCarousel({
   margin: 10,
-
   center: true,
-
   navElement: "span",
 });
 ```
 
-### Rest Parameters
+#### Rest Parameters
 
 ```javascript
 function sumTotal() {
@@ -2436,15 +2258,13 @@ function sumTotal() {
 sumTotal(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
 // 수정후 코드
-
 function sumTotal(...args) {
   return args.reduce((acc, cur) => acc + cur);
 }
 
 sumTotal(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
-// 수정후 코드 - 추가 매개변수를 받을 수 있음
-
+// 수정후 코드 - 추가 매개변수를 받을 수 있습니다.
 function sumTotal(initValue, ...args) {
   return args.reduce((acc, cur) => acc + cur, initValue);
 }
@@ -2452,11 +2272,10 @@ function sumTotal(initValue, ...args) {
 sumTotal(100, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 ```
 
-### void & return
+#### void & return
 
 ```javascript
-// alert, setState는 return이 필요없는 void 함수
-
+// alert, setState는 return이 필요없는 void 함수입니다.
 function handleClick() {
   return setState(false);
 }
@@ -2465,8 +2284,7 @@ function showAlert(message) {
   return alert(message);
 }
 
-// return이 없어 최종적으로 undefined 출력
-
+// return이 없어 최종적으로 undefined 출력합니다.
 function test(sum1, sum2) {
   const result = sum1 + sum2;
 }
@@ -2479,8 +2297,7 @@ testVoidFunc();
 ```
 
 ```javascript
-// 반환이 있을법한 이름의 함수들
-
+// 반환이 있을법한 이름의 함수들입니다.
 function isAdult(age) {
   return age > 19;
 }
@@ -2492,13 +2309,13 @@ function getUserName(name) {
 
 #### Arrow Function
 
-객체 내에서 화살표 함수를 사용하게 되면 this로 접근을 못하는 문제가 발생할 수 있다.
+객체 내에서 화살표 함수를 사용하게 되면 this로 접근을 못하는 문제가 발생할 수 있습니다.
 
-화살표 함수는 렉시컬 스코프를 가지게 되는데 호출된 객체를 this로 바라보는 것이 아닌 바로 상위의 문맥을 따르는 경우가 있다.
+화살표 함수는 렉시컬 스코프를 가지게 되는데 호출된 객체를 this로 바라보는 것이 아닌 바로 상위의 문맥을 따르는 경우가 있습니다.
 
-그렇기 때문에 상위의 스코프를 따르고 this의 동작방식을 따르지 않기 때문에 this로 호출해도 동작이 되지 않는다.
+그렇기 때문에 상위의 스코프를 따르고 this의 동작방식을 따르지 않기 때문에 this로 호출해도 동작이 되지 않습니다.
 
-this의 동작 방식과 화살표 함수를 알고 있으면 도움이 됨
+this의 동작 방식과 화살표 함수를 알고 있으면 도움이 됩니다.
 
 ```javascript
 const user = {
@@ -2521,7 +2338,7 @@ const user = {
 user.getName(); // yh
 ```
 
-화살표 함수는 arguments 객체도 사용할 수 없고, call, apply, bind 등 다양한 것들을 사용하지 못한다.
+화살표 함수는 arguments 객체도 사용할 수 없고, call, apply, bind 등 다양한 것들을 사용하지 못합니다.
 
 ```javascript
 const user = {
@@ -2542,9 +2359,9 @@ const user = {
 };
 ```
 
-화살표 함수는 생성자 함수로 만들 수 없는 단점이 있음.
+화살표 함수는 생성자 함수로 만들 수 없는 단점이 있습니다.
 
-하지만 class가 지원하기 때문에 굳이 화살표 함수로 만들 이유는 없지만 new 연산자로 조합하는 화살표 함수는 에러를 초래할 수 있다.
+하지만 class가 지원하기 때문에 굳이 화살표 함수로 만들 이유는 없지만 new 연산자로 조합하는 화살표 함수는 에러를 초래할 수 있습니다.
 
 ```javascript
 const Person = (name, city) => {
@@ -2567,7 +2384,7 @@ class Parent {
     console.log("parentMethodArrow");
   };
 
-  // 화살표 함수는 자식 클래스에서 동일 함수 이름으로 호출하면 화살표 함수가 호출됨
+  // 화살표 함수는 자식 클래스에서 동일 함수 이름으로 호출하면 화살표 함수가 호출됩니다.
   overrideMethod = () => {
     return "Parent";
   };
@@ -2598,9 +2415,9 @@ new Child().overrideMethod(); // 부모의 메서드가 호출됨
 
 #### Callback function
 
-콜백 함수는 장풍을 유도하고, async await을 통해 비동기를 제어하는 기법이다 라고 생각할 수 있다.
+콜백 함수는 장풍을 유도하고, async await을 통해 비동기를 제어하는 기법이다 라고 생각할 수 있습니다.
 
-콜백 함수는 함수의 실행권을 다른 함수에 위임하는 것으로도 생각할 수 있다.
+콜백 함수는 함수의 실행권을 다른 함수에 위임하는 것으로도 볼 수 있습니다.
 
 ```javascript
 // Callback function 사례
@@ -2652,7 +2469,7 @@ function confirmModal(
 }
 
 // 수정후 코드
-// Callback function은 함수를 인자에 실행시키는 게 아닌 함수 자체를 넘긴다.
+// Callback function은 함수를 인자에 실행시키는 게 아닌 함수 자체를 넘깁니다.
 // 회원가입
 function register() {
   confirmModal("회원가입에 성공했습니다.", redirectUserInfoPage);
@@ -2666,9 +2483,9 @@ function login() {
 
 #### 순수 함수
 
-side effect와 같은 부작용을 발생시키지 않는 함수를 순수 함수라 한다.
+side effect와 같은 부작용을 발생시키지 않는 함수를 순수 함수라 합니다.
 
-함수를 호출할 때마다 동일한 값을 뱉어야 하는데 누군가 임의적으로 값을 바꿔 함수의 호출된 값이 달라지면 안된다.
+함수를 호출할 때마다 동일한 값을 뱉어야 하는데 누군가 임의적으로 값을 바꿔 함수의 호출된 값이 달라지면 안됩니다.
 
 ```javascript
 let num1 = 10;
@@ -2721,10 +2538,10 @@ function changeObj(targetObj) {
 }
 
 changeObj(obj); // { one: 100 }
-console.log(obj); // { one: 100 } 기존 객체의 데이터가 바뀜
+console.log(obj); // { one: 100 } 기존 객체의 데이터가 바뀌었습니다.
 
-// primitive type vs reference type을 공부하면 좋음
-// 객체, 배열을 조작하는 함수를 만들 때는 새롭게 만들어서 반환
+// primitive type vs reference type을 공부하면 좋습니다.
+// 객체, 배열을 조작하는 함수를 만들 때는 새롭게 만들어서 반환합니다.
 function changeObj(targetObj) {
   return { ...targetObj, one: 100 };
 }
@@ -2744,7 +2561,7 @@ function add(num1) {
   };
 }
 
-const addOne = add(1); // 함수 sum을 품고있다.
+const addOne = add(1); // 함수 sum을 품고있습니다.
 const addTwo = add(2);
 ```
 
@@ -2816,7 +2633,7 @@ arr.filter(isString); // ['A', 'B', 'C']
 ```
 
 ```javascript
-// endpoint 별로 나눈 코드
+// endpoint 별로 나눈 코드입니다.
 function fetcher(endpoint) {
   return function (url, options) {
     return fetch(endpoint + url, options)
@@ -2831,7 +2648,7 @@ function fetcher(endpoint) {
   };
 }
 
-// baseUrl을 기억
+// baseUrl을 기억합니다.
 const getNaverApi = fecher("https://www.naver.com");
 const getKakaoApi = fecher("https://www.kakao.com");
 
