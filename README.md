@@ -113,18 +113,18 @@ console.log(global); // 전역
 // let과 const는 선언과 동시에 할당합니다.(호이스팅의 개념을 알면 좋습니다.)
 const person = {
   name: "jung",
-  age: "25",
+  age: 25,
 };
 
 // Error, const는 재할당이 금지됨
 person = {
   name: "jung",
-  age: "25",
+  age: 25,
 };
 
 // 객체의 값을 바꾸기 위해서 .으로 접근합니다.
 person.name = "lee";
-person.age = "20";
+person.age = 20;
 
 console.log(person);
 
@@ -132,23 +132,23 @@ console.log(person);
 const person = [
   {
     name: "jung",
-    age: "25",
+    age: 25,
   },
 ];
 
 // 배열의 값을 변경하는 방법 2가지.
 person[0] = {
   name: "yong",
-  age: "30",
+  age: 30,
 };
 
 person[0].name = "yong";
-person[0].age = "hoon";
+person[0].age = 30;
 
 // 새로운 값 추가
 person.push({
   name: "jung",
-  age: "25",
+  age: 25,
 });
 
 // 이 외에도 pop(), shift() 등이 있습니다. (찾아보기!)
@@ -300,7 +300,7 @@ function genRandomNumber(min, max) {
 function getSomeValue(params) {
   let tempVal = "";
 
-  // 로직 내에서 temp의 값이 자주 바뀜
+  // 로직 내에서 temp의 값이 자주 바뀝니다.
   for (let index = 0; index < array.length; index++) {
     temp = array[index];
     temp += array[index];
@@ -343,7 +343,7 @@ function getSomeValue(params) {
 var global = 0;
 
 function outer() {
-	// 선언과 할당이 분리된 상황
+	// 선언과 할당이 분리된 상황입니다.
 	console.log(global); // undefined
 
 	var global = 5;
@@ -895,79 +895,45 @@ function alertMessage(isAdult) {
 #### Truthy & Falsy
 
 ```javascript
-if ("string".length > 0) {
-}
-
-if (!isNaN(10)) {
-}
-
-if (boolean === true) {
-}
+if ("string".length > 0)
+if (!isNaN(10))
+if (boolean === true)
 
 // 참이기 때문에 Truthy가 없어도 동작함
-
-if ("string".length) {
-}
-
-if (10) {
-}
-
-if (boolean) {
-}
+if ("string".length)
+if (10)
+if (boolean)
 ```
 
 ##### 참 같은 값
 
 ```javascript
-
 if (true)
-
 if ({})
-
 if ([])
-
 if (42)
-
 if ("0")
-
 if ("false")
-
 if (new Date())
-
 if (-42)
-
 if (12n)
-
 if (3.14)
-
 if (-3.14)
-
 if (Infinity)
-
 if (-Infinity)
-
 ```
 
 ##### 거짓 같은 값
 
 ```javascript
-
 if (false)
-
 if (null)
-
 if (undefined)
-
 if (0)
-
 if (-0)
-
 if (0n)
-
 if (NaN)
-
 if ("")
-
 ```
 
 ```javascript
@@ -976,8 +942,11 @@ function printName(name) {
     return "사람이 없네요";
   }
 
-  // 수정한 코드
+  return "안녕하세요 " + name + "님";
+}
 
+// 수정한 코드
+function printName(name) {
   if (!name) {
     return "사람이 없네요";
   }
@@ -988,57 +957,39 @@ function printName(name) {
 
 ```javascript
 /**
-
-* Truthy (참 같은 값)
-
-*/
-
-function SomeComponent({ isShowHeader }) {
-  return (
-    <div>
-      {isShowHeader ? <Header /> : null}
-
-      <Body />
-    </div>
-  );
+ * Truthy (참 같은 값)
+ */
+function example({ isLogin }) {
+  return isLogin ? "성공" : "실패";
 }
 
-function SomeComponent({ content }) {
-  return (
-    <div>
-      {content.length > 0 ? <MessageList messages={props.messages} /> : null}
-    </div>
-  );
+function example({ content }) {
+  return content.length > 0 ? content : null;
 }
 ```
 
-### 단축 평가
+#### 단축 평가
 
 ```javascript
 // AND
-
 true && true && "도달 O";
-
 true && false && "도달 X";
 
 // OR
-
 false || false || "도달 O";
-
 true || true || "도달 X";
 ```
 
 ```javascript
-function fetchData(state) {
-  if (state.data) {
-    return state.data;
+function userData(user) {
+  if (user.name) {
+    return user.name;
   } else {
-    return "Fetching...";
+    return "X";
   }
 
   // 이렇게 사용 가능, OR 단축 평가
-
-  return state.data || "Fetching...";
+  return user.name || "X";
 }
 ```
 
@@ -1055,7 +1006,6 @@ function favoriteDog(someDog) {
   return favoriteDog + " 입니다.";
 
   // 이렇게 사용 가능
-
   return (someDog || "냐옹") + "입니다.";
 }
 ```
@@ -1072,6 +1022,7 @@ const getActiveUserName = (user, isLogin) => {
     }
   }
 
+  // 수정후 코드
   if (isLogin && user) {
     if (user.name) {
       return user.name || "이름없음";
@@ -1080,31 +1031,37 @@ const getActiveUserName = (user, isLogin) => {
 };
 ```
 
-### else if & else 피하기
+#### else if & else 피하기
 
-else if를 이어서 사용하기보다 else와 if를 분리해주고 조건식이 많아지면 switch 문을 활용하자.
+else if를 이어서 사용하기보다 else와 if를 분리해주고 조건식이 많아지면 switch 문을 활용합니다.
+
+else if는 결국 또 다른 if문을 사용하는 거니 두 개의 if로 분리해 주는 것도 좋은 방법입니다.
 
 ```javascript
 const x = 1;
 
 if (x >= 0) {
-  ("x는 0과 같거나 크다");
+  return "x는 0과 같거나 크다";
 } else if (x > 0) {
-  ("x는 0보다 크다");
+  return "x는 0보다 크다";
 } else {
-  ("Else");
+  return "Else";
 }
 
 if (x >= 0) {
-  ("x는 0과 같거나 크다");
+  return "x는 0과 같거나 크다";
 } else {
   if (x > 0) {
-    ("x는 0보다 크다");
+    return "x는 0보다 크다";
   }
 }
 ```
 
-### else 피하기
+#### else 피하기
+
+else의 경우 if 다음에 무조건 동작하니 생략해도 좋습니다.
+
+하지만, 반환이 아닌 데이터 가공에 있어서 A 또는 B 경우의 데이터가 필요하다면 else를 붙여 동작을 하지 않도록 설정해줘야 합니다.
 
 ```javascript
 function getActiveUserName(user) {
@@ -1114,19 +1071,24 @@ function getActiveUserName(user) {
     return "이름없음";
   }
 
-  // 이렇게 사용 가능
-
+  // 이렇게 사용 가능합니다.
   if (user.name) {
     return user.name;
   }
 
   return "이름없음";
+
+  // 주의. 이런 경우에는 yh 이후 new name이 입력되어 의도한 데이터가 저장되지 않을 수 있습니다.
+  if (user.name) {
+    user.name = "yh";
+  }
+
+  user.name = "new name";
 }
 ```
 
 ```javascript
 // age가 20 미만시 특수 함수 실행
-
 function getHelloCustomer(user) {
   if (user.age < 20) {
     report(user);
@@ -1135,7 +1097,6 @@ function getHelloCustomer(user) {
   }
 
   // 인사는 어떠한 경우에도 출력해야 하기에 else 지우기
-
   if (user.age < 20) {
     report(user);
   }
@@ -1144,7 +1105,7 @@ function getHelloCustomer(user) {
 }
 ```
 
-### Early Return
+#### Early Return
 
 ```javascript
 function loginService(isLogin, user) {
@@ -1163,11 +1124,9 @@ function loginService(isLogin, user) {
   }
 }
 
-// 수정한 코드
-
+// 수정후 코드
 function loginService(isLogin, user) {
-  // Early Return, 함수 미리 종료
-
+  // Early Return, 함수 미리 종료 분기 처리입니다.
   if (isLogin) {
     return;
   }
@@ -1180,8 +1139,7 @@ function loginService(isLogin, user) {
     return registerUser(user);
   }
 
-  // 실행 부분이 명확해짐
-
+  // 실행 부분이 명확해집니다.
   login();
 }
 
@@ -1216,20 +1174,15 @@ function 오늘하루(condition, weather, isJob) {
 }
 
 // 수정후 코드
-
 function 오늘하루(condition, weather, isJob) {
-  // 의존성에 따라 분기를 바로 뺄지 아니면 하나의 분기에서 모든 로직을 처리할지 판단해야 한다.
-
-  // 수많은 Early return을 만드는 것은 좋지 않으나 하나의 조건에만 의존성이 걸려있을 때 사용하면 명시적으로 변할 수 있다
-
+  // 의존성에 따라 분기를 바로 뺄지 아니면 하나의 분기에서 모든 로직을 처리할지 판단해야 합니다.
+  // 수많은 Early return을 만드는 것은 좋지 않으나 하나의 조건에만 의존성이 걸려있을 때 사용하면 명시적으로 변할 수 있습니다.
   if (condition !== "GOOD") {
     return;
   }
 
   공부();
-
   게임();
-
   유튜브보기();
 
   if (weather === "GOOD") {
@@ -1237,7 +1190,6 @@ function 오늘하루(condition, weather, isJob) {
   }
 
   운동();
-
   빨래();
 
   if (isJob === "GOOD") {
@@ -1245,23 +1197,19 @@ function 오늘하루(condition, weather, isJob) {
   }
 
   야간업무();
-
   조기취침();
 }
 ```
 
-### 부정조건문 지양하기
+#### 부정조건문 지양하기
 
-- 생각을 여러번 해야 할 수 있다.
-
-- 프로그래밍 언어 자체로 if문이 처음부터 오고 true부터 실행시킨다.
+- 생각을 여러번 해야 할 수 있습니다.
+- 프로그래밍 언어 자체로 if문이 처음부터 오고 true부터 실행시킵니다.
 
 부정조건문 사용하는 경우
 
 - Early Return
-
 - Form Validation
-
 - 보안 혹은 검사하는 로직
 
 ```javascript
@@ -1280,9 +1228,7 @@ if (isNumber(3)) {
 
 ```javascript
 // 추천하지 않는 방법
-
 const isCondition = true;
-
 const isNotCondition = false;
 
 if (!isCondition) {
@@ -1294,9 +1240,9 @@ if (!isNotCondition) {
 }
 ```
 
-### Default case 고려하기
+#### Default case 고려하기
 
-기본값을 정해놓는 경우를 생각해야 함.
+기본값을 정해놓는 경우를 생각해야 합니다.
 
 ```javascript
 function sum(x, y) {
@@ -1304,17 +1250,14 @@ function sum(x, y) {
 }
 
 // 디폴트값 추가
-
 function sum(x, y) {
   x = x || 1;
-
   y = y || 1;
 
   return x + y;
 }
 
 // 매개변수에 추가
-
 function sum(x = 1, y = 1) {
   return x + y;
 }
@@ -1327,19 +1270,16 @@ function createElement(type, height, width) {
   const element = document.createElement(type);
 
   element.style.height = height;
-
   element.style.width = width;
 
   return element;
 }
 
-// div를 기본으로 사용하고 싶을 때
-
+// default 'div' 지정
 function createElement(type, height, width) {
   const element = document.createElement(type || "div");
 
   element.style.height = height || 100;
-
   element.style.width = width || 100;
 
   return element;
@@ -1352,89 +1292,85 @@ createElement();
 function registerDay(userInputDay) {
   switch (userInputDay) {
     case "월요일":
-
+      return;
     case "화요일":
-
+      return;
     case "수요일":
-
+      return;
     case "목요일":
-
+      return;
     case "금요일":
-
+      return;
     case "토요일":
-
+      return;
     case "일요일":
-
+      return;
     default:
       throw Error("");
   }
 }
 
-registerDay("월ㄹ요일"); // 오타 입력의 경우를 생각해서 처리해줘야 함
+registerDay("월ㄹ요일"); // 오타 입력의 경우를 생각해서 처리해줘야 합니다.
 ```
 
 ```javascript
-// 만들어져있는 함수에 기본값 넣기
-
+// parseInt 함수를 또 하나의 함수로 만들어 빈 값이 들어가도 기본값으로 고정해놓는 함수입니다.
 function safeParseInt(number, radix) {
   return parseInt(number, radix || 10);
 }
 ```
 
-### 명시적인 연산자 사용 지향하기
+#### 명시적인 연산자 사용 지향하기
 
-'()'를 통해 연산자 우선순위를 표현해주자.
+'()'를 통해 연산자 우선 순위를 표현해줍니다.
 
-- 몸무게 % (신장 \* 신장)
+- ex 몸무게 % (신장 \* 신장)
 
-예측 가능하고 디버깅 하기 쉽다.
+우선 순위를 표현하면 예측 가능하고 디버깅 하기 쉽습니다.
 
 ```javascript
 let number;
 
 function increment() {
   number--;
-
   --number;
 
+  // 풀어서 사용해주는 게 가독성이 좋습니다.
   number = number - 1;
 }
 
 function increment() {
   number++;
-
   ++number;
 
+  // 풀어서 사용해주는 게 가독성이 좋습니다.
   number = number + 1;
 }
 ```
 
-### Nullish coalescing operator
+#### Nullish coalescing operator
 
-널 병합 연산자를 사용시에 null, undefined만 평가한다는 것을 꼭 기억하고 사용하자.
+널 병합 연산자를 사용시에 null, undefined만 평가한다는 것을 꼭 기억하고 사용합시다.
 
 ```javascript
 function createElement(type, height, width) {
   const element = document.createElement(type || "div");
 
   element.style.height = (height || 10) + "px";
-
   element.style.width = (width || 10) + "px";
 
   return element;
 }
 
-// 0은 falsy로 처리되기 때문에 OR에서 걸리게 된다.
-
+// 0은 falsy로 처리되기 때문에 OR에서 걸리게 됩니다.
 createElement("div", 0, 0);
 
-// ?? 연산자는 null or undefined만 평가한다. 널 병합 연산자
+// ?? 연산자는 null or undefined만 평가합니다. 널 병합 연산자
 
 function createElement(type, height, width) {
   const element = document.createElement(type ?? "div");
 
   element.style.height = (height ?? 10) + "px";
-
   element.style.width = (width ?? 10) + "px";
 
   return element;
@@ -1445,8 +1381,7 @@ createElement("div", 0, 0);
 
 ```javascript
 function helloWorld(message) {
-  // Early Return을 사용할 때도 널 병합 연산자를 고려해서 넣어야함.
-
+  // Early Return을 사용할 때도 널 병합 연산자를 고려해서 넣어야 합니다.
   if (!message) {
     return "Hello! World";
   }
@@ -1462,26 +1397,20 @@ helloWorld(0);
 ```
 
 ```javascript
-
 null || undefined ?? "foo"; // 에러 발생. 사람들의 잦은 실수로 언어에서 규제함.
-
 (null || undefined) ?? "foo"; // 해결. OR 연산자는 우선순위가 낮음
-
 ```
 
-### 드모르간의 법칙
+#### 드모르간의 법칙
 
 - true is not true
-
 - false is not false
 
 ```javascript
 const isValidUser = false;
-
 const isValidToken = false;
 
 // 로그인 성공을 실패로 바꾸는 과정
-
 if (isValidToken && isValidUser) {
   console.log("로그인 성공!");
 }
@@ -1495,19 +1424,15 @@ if (!isValidToken || !isValidUser) {
 }
 ```
 
-### JavaScript의 배열은 객체다.
+#### JavaScript의 배열은 객체입니다.
 
 ```javascript
 const arr = [1, 2, 3];
 
 arr[3] = "test";
-
 arr["property"] = "string value";
-
 arr["obj"] = {};
-
 arr[{}] = [1, 2, 3];
-
 arr["func"] = function () {
   return "hello";
 };
@@ -1515,12 +1440,10 @@ arr["func"] = function () {
 for (let i = 0; i < arr.length; i++) {
   console.log(arr[i]);
 }
-
 // console => 1 2 3
 
 console.log(arr);
-
-// console [1, 2, 3, 'test', property: 'string value', obj: {}, '[object Object]': [1, 2, 3], func: [F]]
+// console => [1, 2, 3, 'test', property: 'string value', obj: {}, '[object Object]': [1, 2, 3], func: [F]]
 ```
 
 ```javascript
@@ -1534,22 +1457,20 @@ if (typeof arr === "object") {
   console.log("배열 확인");
 }
 
-// 배열 검사
-
+// 배열 검사 메서드
 Array.isArray(arr);
 ```
 
-### Array.length
+#### Array.length
 
-- 자바스크립트의 배열은 길이를 보장하지 못함.
+- 자바스크립트의 배열은 길이를 보장하지 못합니다.
 
-- 배열 길이를 다룰 때는 주의해야 함.
+- 배열 길이를 다룰 때는 주의해야 합니다.
 
 ```javascript
 const arr = [1, 2, 3];
 
 arr.length = 10;
-
 // [1, 2, 3, , , , , , , ]
 ```
 
@@ -1557,7 +1478,6 @@ arr.length = 10;
 const arr = [1, 2, 3];
 
 arr[9] = 10;
-
 // [1, 2, 3, , , , , , , 10]
 ```
 
@@ -1581,54 +1501,31 @@ arr.length; // 0
 clearArray(arr); // []
 ```
 
-### 배열 요소에 접근하기
+#### 배열 요소에 접근하기
 
 ```javascript
-
 function operateTime(input operators, is) {
+  inputs[0].split('').forEach(num => {
+    cy.get('.digit').contains(num).click();
+  })
 
-inputs[0].split('').forEach(num => {
-
-cy.get('.digit').contains(num).click();
-
-})
-
-
-
-inputs[1].split('').forEach(num => {
-
-cy.get('.digit').contains(num).click();
-
-})
-
+  inputs[1].split('').forEach(num => {
+    cy.get('.digit').contains(num).click();
+  })
 }
 
-
-
 // 예시
-
 function operateTime(input, operators, is) {
+  // 배열 구조분해할당으로 명시적으로 작성합니다.
+  const [firstInput, secondInput] = inputs;
 
-// 배열 구조분해할당으로 명시적으로 작성
+  firstInput.split('').forEach(num => {
+    cy.get('.digit').contains(num).click();
+  })
 
-const [firstInput, secondInput] = inputs;
-
-
-
-firstInput.split('').forEach(num => {
-
-cy.get('.digit').contains(num).click();
-
-})
-
-
-
-secondInput.split('').forEach(num => {
-
-cy.get('.digit').contains(num).click();
-
-})
-
+  secondInput.split('').forEach(num => {
+    cy.get('.digit').contains(num).click();
+  })
 }
 
 
@@ -1636,36 +1533,24 @@ cy.get('.digit').contains(num).click();
 // 예시 2, 매개변수 구조분해할당
 
 function operateTime([firstInput, secondInput], operators, is) {
+  firstInput.split('').forEach(num => {
+    // ... 코드
+  })
 
-firstInput.split('').forEach(num => {
-
-// ~~~
-
-})
-
-
-
-secondInput.split('').forEach(num => {
-
-// ~~~
-
-})
-
+  secondInput.split('').forEach(num => {
+    // ... 코드
+  })
 }
-
 ```
 
 ```javascript
 function clickGroupButton() {
   const confirmButton = document.getElementsByTagName("button")[0];
-
   const cancelButton = document.getElementsByTagName("button")[1];
-
   const resetButton = document.getElementsByTagName("button")[2];
 }
 
 // 예시
-
 function clickGroupButton() {
   const [confirmButton, cancelButton, resetButton] =
     document.getElementsByTagName("button");
@@ -1675,56 +1560,48 @@ function clickGroupButton() {
 ```javascript
 function formatDate(targetDate) {
   const date = targetDate.toISOString().split("T")[0];
-
   const [year, month, day] = date.split("-");
 
   return `${year}년 ${month}월 ${day}일`;
 }
 
 // 예시
-
 function formatDate(targetDate) {
   const [date] = targetDate.toISOString().split("T");
-
   const [year, month, day] = date.split("-");
 
   return `${year}년 ${month}월 ${day}일`;
 }
 
 // 예시 2
-
 function head(arr) {
   return arr[0] ?? "";
 }
 
 function formatDate(targetDate) {
   const date = head(targetDate.toISOString().split("T"));
-
   const [year, month, day] = date.split("-");
 
   return `${year}년 ${month}월 ${day}일`;
 }
 ```
 
-### 유사 배열 객체
+#### 유사 배열 객체
 
 ```javascript
 const arrayLikeObject = {
   0: "HELLO",
-
   1: "WORLD",
-
   length: 2,
 };
 
-const arr = Array.from(arrayLikeObject); // 객체를 배열로 바꿔줌
+const arr = Array.from(arrayLikeObject); // 객체를 배열로 바꿔줍니다.
 
 Array.isArray(arr); // true
 ```
 
 ```javascript
 // arguments는 대표적인 유사 배열 객체
-
 function generatePriceList() {
   for (let index = 0; index < array.length; index++) {
     const element = arguments[index];
@@ -1740,37 +1617,30 @@ function generatePriceList() {
 generatePriceList(100, 200, 300, 400, 500);
 ```
 
-### 불변성 - immutable
+#### 불변성 - immutable
 
 불변성 지키기
 
-- 배열을 복사한다.
-
-- 새로운 배열을 반환하는 메서드들을 활용한다.
+- 배열을 복사합니다.
+- 새로운 배열을 반환하는 메서드들을 활용합니다.
 
 ```javascript
 const originArray = ["123", "456", "789"];
-
 const newArray = originArray;
 
 originArray.push(10);
-
 originArray.push(11);
-
 originArray.push(12);
-
 originArray.unshift(0);
 
-// 원본 배열에 지장을 주기 때문에 새로운 배열로 복사를 해야한다.
-
-// map(), filter() 등 고차 함수 사용
+// 원본 배열에 지장을 주기 때문에 새로운 배열로 복사를 해야합니다.
+// map(), filter() 등 고차 함수를 사용합니다.
 ```
 
-### for 문 배열 고차 함수로 리팩터링
+#### for문 배열 고차 함수로 리팩터링
 
 ```javascript
 // 원화
-
 const price = ["2000", "1000", "3000", "5000", "4000"];
 
 function getWonPrice(priceList) {
@@ -1784,7 +1654,6 @@ function getWonPrice(priceList) {
 }
 
 // 수정후 코드
-
 const suffixWon = (price) => price + "원";
 
 function getWonPrice(priceList) {
@@ -1792,9 +1661,7 @@ function getWonPrice(priceList) {
 }
 
 // 수정후 코드 + 조건
-
 const suffixWon = (price) => price + "원";
-
 const isOverOneThousand = (price) => Number(price) > 1000;
 
 function getWonPrice(priceList) {
@@ -1804,96 +1671,73 @@ function getWonPrice(priceList) {
 }
 ```
 
-### 배열 메서드 체이닝 활용하기
+#### 배열 메서드 체이닝 활용하기
 
 ```javascript
 // 수정후 코드 + 조건 + 정렬
-
 const suffixWon = (price) => price + "원";
-
 const isOverOneThousand = (price) => Number(price) > 1000;
-
 const ascendingList = (a, b) => a - b;
 
 function getWonPrice(priceList) {
   const isOverList = priceList.filter(isOverOneThousand);
-
   const sortList = isOverList.sort(ascendingList);
 
   return priceList.map(suffixWon);
 }
 
 // 메서드 체이닝 활용
-
 function getWonPrice(priceList) {
   return priceList
-
     .filter(isOverOneThousand) // 필터
-
     .sort(ascendingList) // 정렬
-
     .map(suffixWon); // 요소 정리
 }
 ```
 
 ### map vs forEach
 
-언어의 명세에 따라 상황에 맞춰 사용해야 한다.
+언어의 명세에 따라 상황에 맞춰 사용해야 합니다.
 
 ```javascript
 const price = ["2000", "1000", "3000", "5000", "4000"];
 
 // 함수를 실행
-
 const newPricesForEach = prices.forEach((price) => price + "원");
 
 // 새로운 배열을 반환
-
 const newPricesMap = prices.map((price) => price + "원");
 ```
 
-### continue & break
+#### continue & break
 
 고차함수에서 continue & break 사용하는 방법
 
-- throw 에러를 발생시켜 try - catch로 잡아준다.
-
-- for, for in, for of 등을 사용한다.
-
-- .every(), .some(), .find(), .findIndex() 등과 같이 적절한 메서드를 찾아서 사용한다.
+- throw 에러를 발생시켜 try - catch로 잡아줍니다.
+- for, for in, for of 등을 사용합니다.
+- .every(), .some(), .find(), .findIndex() 등과 같이 적절한 메서드를 찾아서 사용합니다.
 
 ```javascript
-
 const orders = ['first', 'second', 'third']
 
-
-
 orders.forEach((order) => {
-
-if(order === 'second') {
-
-continue;
-
-break;
-
-}
-
+  if(order === 'second') {
+    continue;
+    break;
+  }
 })
-
 ```
 
-### Shorthand Properties
+#### Shorthand Properties
 
-Concise Method - 간결한 메서드
+Concise Method - 간결한 메서드를 뜻합니다.
 
 ```javascript
 const firstName = "jung";
-
 const lastName = "hoon";
 
 const person = {
   firstName: "jung",
-
   lastName: "hoon",
 
   getFullName: () => {
@@ -1902,19 +1746,16 @@ const person = {
 };
 
 // Shorthand Properties
-
 const person = {
   firstName,
-
   lastName,
-
   getFullName() {
     return this.firstName + " " + this.lastName;
   },
 };
 ```
 
-### Lookup Table
+#### Lookup Table
 
 ```javascript
 function getUserType(type) {
@@ -1933,58 +1774,47 @@ function getUserType(type) {
   switch (key) {
     case "ADMIN":
       return "관리자";
-
     case "INSTRUCTOR":
       return "강사";
-
     case "STUDENT":
       return "수강생";
-
     default:
       return "해당없음";
   }
 }
 
 // Object Lookup Table - best
-
 // USER_TYPE을 상수로 관리해서 따로 관리를 한다.
-
 function getUserType(type) {
   const USER_TYPE = {
     ADMIN: "관리자",
-
     INSTRUCTOR: "강사",
-
     STUDENT: "수강생",
-
     UNDEFINED: "해당 없음",
   };
 
   return USER_TYPE[type] || USER_TYPE.UNDEFINED;
 }
 
-//
-
+// 또 다른 사례
 function getUserType(type) {
   return (
     {
       ADMIN: "관리자",
-
       INSTRUCTOR: "강사",
-
       STUDENT: "수강생",
     }[type] || "해당 없음"
   );
 }
 ```
 
-### Object Destructuring
+#### Object Destructuring
 
 객체의 구조분해할당
 
-인자가 3개 이상일 때 보통 사용
+인자가 3개 이상일 때 보통 사용합니다.
 
-객체 구조분해할당을 통해 명시적인 코드를 작성할 수 있다.
+객체 구조분해할당을 통해 명시적인 코드를 작성할 수 있습니다.
 
 ```javascript
 function Person(name, age, location) {
