@@ -68,11 +68,11 @@ name = "hoonloper"; // Error, 재할당
 함수 스코프와 블록 스코프에 대해 알아봅시다.
 
 ```javascript
-var global = '전역';
+var global = "전역";
 
 // var는 함수 스코프이기에 if문 스코프에 해당되지 않아 값이 덮어씌워집니다.
-if (global === '전역') {
-  var global = '지역 변수';
+if (global === "전역") {
+  var global = "지역 변수";
   console.log(global); // 지역 변수
 }
 
@@ -81,11 +81,11 @@ console.log(global); // 지역 변수
 
 /* ------------------------- */
 
-let global = '전역';
+let global = "전역";
 
 // let은 블록 스코프이기 때문에 if문에서 블록 스코프가 적용됩니다.
-if (global === '전역') {
-  let global = '지역 변수';
+if (global === "전역") {
+  let global = "지역 변수";
   console.log(global); // 지역 변수
 }
 
@@ -94,11 +94,11 @@ console.log(global); // 전역
 
 /* ------------------------- */
 
-const global = '전역';
+const global = "전역";
 
 // const도 let과 동일합니다.
-if (global === '전역') {
-  const global = '지역 변수';
+if (global === "전역") {
+  const global = "지역 변수";
   console.log(global); // 지역 변수
 }
 
@@ -112,43 +112,43 @@ console.log(global); // 전역
 ```javascript
 // let과 const는 선언과 동시에 할당합니다.(호이스팅의 개념을 알면 좋습니다.)
 const person = {
-  name: 'jung',
-  age: '25',
+  name: "jung",
+  age: "25",
 };
 
 // Error, const는 재할당이 금지됨
 person = {
-  name: 'jung',
-  age: '25',
+  name: "jung",
+  age: "25",
 };
 
 // 객체의 값을 바꾸기 위해서 .으로 접근합니다.
-person.name = 'lee';
-person.age = '20';
+person.name = "lee";
+person.age = "20";
 
 console.log(person);
 
 // 배열은 아래와 같습니다.
 const person = [
   {
-    name: 'jung',
-    age: '25',
+    name: "jung",
+    age: "25",
   },
 ];
 
 // 배열의 값을 변경하는 방법 2가지.
 person[0] = {
-  name: 'yong',
-  age: '30',
+  name: "yong",
+  age: "30",
 };
 
-person[0].name = 'yong';
-person[0].age = 'hoon';
+person[0].name = "yong";
+person[0].age = "hoon";
 
 // 새로운 값 추가
 person.push({
-  name: 'jung',
-  age: '25',
+  name: "jung",
+  age: "25",
 });
 
 // 이 외에도 pop(), shift() 등이 있습니다. (찾아보기!)
@@ -170,17 +170,17 @@ person.push({
 
 ```javascript
 // global.js 1
-var globalVar = 'global';
+var globalVar = "global";
 
 // 전역 초기화
-var setTimeout = 'setTimeout';
+var setTimeout = "setTimeout";
 
 // global.js 2
 console.log(globalVar); // global
 
 // 전역 객체의 딜레이를 주는 함수
 window.setTimeout(() => {
-  console.log('1초');
+  console.log("1초");
 }, 1000);
 
 /*
@@ -219,22 +219,22 @@ function getElements() {
   // const로 선언했지만 함수 내부에서 봤을 때 전역 변수로 사용되고 있습니다.
   const result = {}; // 임시 객체
 
-  result.title = '제목';
-  result.text = '내용';
-  result.value = '값';
+  result.title = "제목";
+  result.text = "내용";
+  result.value = "값";
 
   /* 명확하게 변경했지만 이것도 임시 객체로 볼 수 있습니다. */
   const result = {
-    title: '제목',
-    text: '내용',
-    value: '값',
+    title: "제목",
+    text: "내용",
+    value: "값",
   };
 
   /* 더 명확하게 변경, 바로 리턴해주는 형태입니다. */
   return {
-    title: '제목',
-    text: '내용',
-    value: '값',
+    title: "제목",
+    text: "내용",
+    value: "값",
   };
 }
 
@@ -254,9 +254,9 @@ function getDateTime(targetDate) {
   let day = targetDate.getDate();
   let hour = targetDate.Hours();
 
-  month = month > 10 ? month : '0' + month;
-  day = day > 10 ? day : '0' + day;
-  hour = hour > 10 ? hour : '0' + hour;
+  month = month > 10 ? month : "0" + month;
+  day = day > 10 ? day : "0" + day;
+  hour = hour > 10 ? hour : "0" + hour;
 
   return {
     month,
@@ -270,9 +270,9 @@ function getDateTime(targetDate) {
   const hour = targetDate.Hours();
 
   return {
-    month: month > 10 ? month : '0' + month,
-    day: day > 10 ? day : '0' + day,
-    hour: hour > 10 ? hour : '0' + hour,
+    month: month > 10 ? month : "0" + month,
+    day: day > 10 ? day : "0" + day,
+    hour: hour > 10 ? hour : "0" + hour,
   };
 }
 
@@ -282,9 +282,9 @@ function getDateTime() {
   computedKrDate();
 
   return {
-    month: computedKrDate(currentDateTime.month) + '분 전',
-    day: currentDateTime.day + '',
-    hour: currentDateTime.hour + '',
+    month: computedKrDate(currentDateTime.month) + "분 전",
+    day: currentDateTime.day + "",
+    hour: currentDateTime.hour + "",
   };
 }
 
@@ -298,7 +298,7 @@ function genRandomNumber(min, max) {
 
 // 또 다른 사례 - 명령형에 가까운 함수
 function getSomeValue(params) {
-  let tempVal = '';
+  let tempVal = "";
 
   // 로직 내에서 temp의 값이 자주 바뀜
   for (let index = 0; index < array.length; index++) {
@@ -423,7 +423,7 @@ const sum = function () {
 
 ```javascript
 // typeof는 피연산자의 타입을 검사해 '문자열'로 반환해줍니다. - 함수형으로도 사용 가능합니다.
-typeof '문자열';
+typeof "문자열";
 typeof true;
 typeof undefined;
 typeof 123;
@@ -434,7 +434,7 @@ PRIMITIVE(원시값) vs REFERENCE(자료형)
 */
 
 // PRIMITIVE
-typeof '문자열';
+typeof "문자열";
 typeof true;
 typeof undefined;
 typeof 123;
@@ -449,7 +449,7 @@ typeof Date(); // string
 typeof {}; // object
 
 // REFERENCE 형식으로 만들면 typeof가 감지하지 못합니다.
-const str = new String('문자열');
+const str = new String("문자열");
 typeof str; // object
 
 typeof null; // null === object -> 자바스크립트에서 인정한 오류입니다.
@@ -462,10 +462,10 @@ function Person(name, age) {
 }
 
 const personObj = {
-  name: 'jung',
+  name: "jung",
   age: 25,
 };
-const person = new Person('jung', 25);
+const person = new Person("jung", 25);
 
 person instanceof Person; // true
 personObj instanceof Person; // false
@@ -486,7 +486,7 @@ func instanceof Object; // true
 date instanceof Object; // true
 
 // 그래서 타입검사 방법이 또 있습니다.
-Object.prototype.toString.call('');
+Object.prototype.toString.call("");
 Object.prototype.toString.call(new String());
 Object.prototype.toString.call(arr);
 Object.prototype.toString.call(date);
@@ -538,28 +538,28 @@ null -> object
 == 을 이용해 비교하면 type casting이 발생해서 '1'과 1이 같다고 나옵니다.
 
 ```javascript
-'1' == 1; // true
+"1" == 1; // true
 1 == true; // true
 ```
 
 #### 형변환 주의하기
 
 ```javascript
-'1' == 1; // 느슨한 검사 -> 형 변환
+"1" == 1; // 느슨한 검사 -> 형 변환
 1 == true;
 0 == false;
 
 // 암묵적 형변환
-11 + '문자'; // '11 문자와 결합'
-!!'문자열'; // true
-!!''; // false
+11 + "문자"; // '11 문자와 결합'
+!!"문자열"; // true
+!!""; // false
 
 // 명시적으로 수정하자.
-String(11 + '문자'); // '11 문자와 결합'
-Boolean('문자열'); // true
-Boolean(''); // false
+String(11 + "문자"); // '11 문자와 결합'
+Boolean("문자열"); // true
+Boolean(""); // false
 
-parseInt('9.9999', 10); // 9
+parseInt("9.9999", 10); // 9
 ```
 
 정리
@@ -581,13 +581,13 @@ Number.MAX_SAFE_INTEGER;
 Number.isInteger;
 
 // isNaN -> is Not a Number -> 숫자가 아니다.
-typeof 123 === 'number'; // true
-typeof 123 !== 'number'; // false
+typeof 123 === "number"; // true
+typeof 123 !== "number"; // false
 isNaN(123); // false -> 숫자가 숫자가 아니다.
 
 // ES2015+
-isNan(123 + 'test'); // true
-Number.isNaN(123 + 'test'); // false
+isNan(123 + "test"); // true
+Number.isNaN(123 + "test"); // false
 
 isNaN; // 느슨한 검사
 Number.isNaN; // 엄격한 검사
@@ -633,7 +633,7 @@ function reservationDate(beginDate, endDate) {
   // ... 코드
 }
 
-reservationDate('YYYY-MM-DD', 'YYYY-MM-DD');
+reservationDate("YYYY-MM-DD", "YYYY-MM-DD");
 ```
 
 시작은 동일하나 끝은 다를 경우이다. (Ex : 숙소 예약 등)
@@ -647,13 +647,13 @@ first - last
 부터 ~~~ 까지
 */
 
-const students = ['에이', '비', '씨'];
+const students = ["에이", "비", "씨"];
 
 function getStudents(firstStudent, lastStudent) {
   // ... 코드
 }
 
-getStudents('에이', '씨');
+getStudents("에이", "씨");
 ```
 
 #### Prefix - Suffix
@@ -695,7 +695,7 @@ function someFunc(someArg, someArg) {}
 
 // 매개변수로 어느정도 함수가 어떤 기능을 하는지 유추 가능합니다.
 genRandomNumber(1, 50);
-getDates('2022-01-01', '2022-02-01');
+getDates("2022-01-01", "2022-02-01");
 genShuffleArray(1, 5);
 ```
 
@@ -713,7 +713,7 @@ ReactDOM.render(<div id="msg">Hello World!</div>, mountNode);
 
 // Is transformed to this JS:
 ReactDOM.render(
-  React.createElement('div', { id: 'msg' }, 'Hello World!'),
+  React.createElement("div", { id: "msg" }, "Hello World!"),
   mountNode
 );
 ```
@@ -738,19 +738,19 @@ function ReactComponent() {
     <section>
       <h1>Color</h1>
       <h3>Name</h3>
-      <p>{this.state.color || 'white'}</p>
+      <p>{this.state.color || "white"}</p>
       <h3>Hex</h3>
       <p>
         {(() => {
           switch (this.state.color) {
-            case 'red':
-              return '#FF0000';
-            case 'green':
-              return '#00FF00';
-            case 'blue':
-              return '#0000FF';
+            case "red":
+              return "#FF0000";
+            case "green":
+              return "#00FF00";
+            case "blue":
+              return "#0000FF";
             default:
-              return '#FFFFFF';
+              return "#FFFFFF";
           }
         })()}
       </p>
@@ -849,7 +849,7 @@ function example() {
 
   switch (temp) {
     case condition: // condition1~3 경우
-      return 'conditionValue'; // 컨디션 값
+      return "conditionValue"; // 컨디션 값
     default:
       value4; // 예외
   }
@@ -858,13 +858,13 @@ function example() {
 
 ```javascript
 // 우선 순위는 한번 감싸주며 가독성을 높여줍니다.
-const example = condition1 ? (a === 0 ? 'zero' : 'positive') : 'negative';
+const example = condition1 ? (a === 0 ? "zero" : "positive") : "negative";
 ```
 
 ```javascript
 // 삼항 연산자의 좋은 예시
 const welcomeMessage = (isLogin) => {
-  const name = isLogin ? getName() : '이름없음';
+  const name = isLogin ? getName() : "이름없음";
 
   return `안녕하세요 ${name}`;
 };
@@ -877,7 +877,7 @@ const welcomeMessage = (isLogin) => {
 // 숏코딩 or if문 개인 취향~
 
 function alertMessage(isAdult) {
-  isAdult ? alert('입장이 가능합니다.') : alert('입장이 불가능합니다.');
+  isAdult ? alert("입장이 가능합니다.") : alert("입장이 불가능합니다.");
 
   if (isAdult) {
     // ... 코드
@@ -888,14 +888,14 @@ function alertMessage(isAdult) {
 
 // 이런 예시도 있습니다.
 function alertMessage(isAdult) {
-  return isAdult ? '입장 가능' : '입장 불가능';
+  return isAdult ? "입장 가능" : "입장 불가능";
 }
 ```
 
 #### Truthy & Falsy
 
 ```javascript
-if ('string'.length > 0) {
+if ("string".length > 0) {
 }
 
 if (!isNaN(10)) {
@@ -906,7 +906,7 @@ if (boolean === true) {
 
 // 참이기 때문에 Truthy가 없어도 동작함
 
-if ('string'.length) {
+if ("string".length) {
 }
 
 if (10) {
@@ -973,16 +973,16 @@ if ("")
 ```javascript
 function printName(name) {
   if (name === undefined || name === null) {
-    return '사람이 없네요';
+    return "사람이 없네요";
   }
 
   // 수정한 코드
 
   if (!name) {
-    return '사람이 없네요';
+    return "사람이 없네요";
   }
 
-  return '안녕하세요 ' + name + '님';
+  return "안녕하세요 " + name + "님";
 }
 ```
 
@@ -1017,15 +1017,15 @@ function SomeComponent({ content }) {
 ```javascript
 // AND
 
-true && true && '도달 O';
+true && true && "도달 O";
 
-true && false && '도달 X';
+true && false && "도달 X";
 
 // OR
 
-false || false || '도달 O';
+false || false || "도달 O";
 
-true || true || '도달 X';
+true || true || "도달 X";
 ```
 
 ```javascript
@@ -1033,12 +1033,12 @@ function fetchData(state) {
   if (state.data) {
     return state.data;
   } else {
-    return 'Fetching...';
+    return "Fetching...";
   }
 
   // 이렇게 사용 가능, OR 단축 평가
 
-  return state.data || 'Fetching...';
+  return state.data || "Fetching...";
 }
 ```
 
@@ -1049,14 +1049,14 @@ function favoriteDog(someDog) {
   if (someDog) {
     favoriteDog = dog;
   } else {
-    favoriteDog = '냐옹';
+    favoriteDog = "냐옹";
   }
 
-  return favoriteDog + ' 입니다.';
+  return favoriteDog + " 입니다.";
 
   // 이렇게 사용 가능
 
-  return (someDog || '냐옹') + '입니다.';
+  return (someDog || "냐옹") + "입니다.";
 }
 ```
 
@@ -1067,14 +1067,14 @@ const getActiveUserName = (user, isLogin) => {
       if (user.name) {
         return user.name;
       } else {
-        return '이름없음';
+        return "이름없음";
       }
     }
   }
 
   if (isLogin && user) {
     if (user.name) {
-      return user.name || '이름없음';
+      return user.name || "이름없음";
     }
   }
 };
@@ -1088,18 +1088,18 @@ else if를 이어서 사용하기보다 else와 if를 분리해주고 조건식�
 const x = 1;
 
 if (x >= 0) {
-  ('x는 0과 같거나 크다');
+  ("x는 0과 같거나 크다");
 } else if (x > 0) {
-  ('x는 0보다 크다');
+  ("x는 0보다 크다");
 } else {
-  ('Else');
+  ("Else");
 }
 
 if (x >= 0) {
-  ('x는 0과 같거나 크다');
+  ("x는 0과 같거나 크다");
 } else {
   if (x > 0) {
-    ('x는 0보다 크다');
+    ("x는 0보다 크다");
   }
 }
 ```
@@ -1111,7 +1111,7 @@ function getActiveUserName(user) {
   if (user.name) {
     return user.name;
   } else {
-    return '이름없음';
+    return "이름없음";
   }
 
   // 이렇게 사용 가능
@@ -1120,7 +1120,7 @@ function getActiveUserName(user) {
     return user.name;
   }
 
-  return '이름없음';
+  return "이름없음";
 }
 ```
 
@@ -1131,7 +1131,7 @@ function getHelloCustomer(user) {
   if (user.age < 20) {
     report(user);
   } else {
-    return '안녕하세요.';
+    return "안녕하세요.";
   }
 
   // 인사는 어떠한 경우에도 출력해야 하기에 else 지우기
@@ -1140,7 +1140,7 @@ function getHelloCustomer(user) {
     report(user);
   }
 
-  return '안녕하세요.';
+  return "안녕하세요.";
 }
 ```
 
@@ -1155,10 +1155,10 @@ function loginService(isLogin, user) {
       } else {
         refreshToken();
 
-        return '로그인 성공';
+        return "로그인 성공";
       }
     } else {
-      throw new Error('No Token');
+      throw new Error("No Token");
     }
   }
 }
@@ -1173,7 +1173,7 @@ function loginService(isLogin, user) {
   }
 
   if (checkToken()) {
-    throw new Error('No Token');
+    throw new Error("No Token");
   }
 
   if (!user.nickName) {
@@ -1188,26 +1188,26 @@ function loginService(isLogin, user) {
 function login() {
   refreshToken();
 
-  return '로그인 성공';
+  return "로그인 성공";
 }
 ```
 
 ```javascript
 function 오늘하루(condition, weather, isJob) {
-  if (condition === 'GOOD') {
+  if (condition === "GOOD") {
     공부();
 
     게임();
 
     유튜브보기();
 
-    if (weather === 'GOOD') {
+    if (weather === "GOOD") {
       운동();
 
       빨래();
     }
 
-    if (isJob === 'GOOD') {
+    if (isJob === "GOOD") {
       야간업무();
 
       조기취침();
@@ -1222,7 +1222,7 @@ function 오늘하루(condition, weather, isJob) {
 
   // 수많은 Early return을 만드는 것은 좋지 않으나 하나의 조건에만 의존성이 걸려있을 때 사용하면 명시적으로 변할 수 있다
 
-  if (condition !== 'GOOD') {
+  if (condition !== "GOOD") {
     return;
   }
 
@@ -1232,7 +1232,7 @@ function 오늘하루(condition, weather, isJob) {
 
   유튜브보기();
 
-  if (weather === 'GOOD') {
+  if (weather === "GOOD") {
     return;
   }
 
@@ -1240,7 +1240,7 @@ function 오늘하루(condition, weather, isJob) {
 
   빨래();
 
-  if (isJob === 'GOOD') {
+  if (isJob === "GOOD") {
     return;
   }
 
@@ -1266,15 +1266,15 @@ function 오늘하루(condition, weather, isJob) {
 
 ```javascript
 if (!isNaN(3)) {
-  console.log('숫자입니다');
+  console.log("숫자입니다");
 }
 
 function isNumber(num) {
-  return !Number.isNaN(num) && typeof num === 'number';
+  return !Number.isNaN(num) && typeof num === "number";
 }
 
 if (isNumber(3)) {
-  console.log('숫자입니다');
+  console.log("숫자입니다");
 }
 ```
 
@@ -1286,11 +1286,11 @@ const isCondition = true;
 const isNotCondition = false;
 
 if (!isCondition) {
-  console.log('거짓인 경우에만 실행');
+  console.log("거짓인 경우에만 실행");
 }
 
 if (!isNotCondition) {
-  console.log('거짓인 경우에만 실행');
+  console.log("거짓인 경우에만 실행");
 }
 ```
 
@@ -1336,7 +1336,7 @@ function createElement(type, height, width) {
 // div를 기본으로 사용하고 싶을 때
 
 function createElement(type, height, width) {
-  const element = document.createElement(type || 'div');
+  const element = document.createElement(type || "div");
 
   element.style.height = height || 100;
 
@@ -1351,26 +1351,26 @@ createElement();
 ```javascript
 function registerDay(userInputDay) {
   switch (userInputDay) {
-    case '월요일':
+    case "월요일":
 
-    case '화요일':
+    case "화요일":
 
-    case '수요일':
+    case "수요일":
 
-    case '목요일':
+    case "목요일":
 
-    case '금요일':
+    case "금요일":
 
-    case '토요일':
+    case "토요일":
 
-    case '일요일':
+    case "일요일":
 
     default:
-      throw Error('');
+      throw Error("");
   }
 }
 
-registerDay('월ㄹ요일'); // 오타 입력의 경우를 생각해서 처리해줘야 함
+registerDay("월ㄹ요일"); // 오타 입력의 경우를 생각해서 처리해줘야 함
 ```
 
 ```javascript
@@ -1415,32 +1415,32 @@ function increment() {
 
 ```javascript
 function createElement(type, height, width) {
-  const element = document.createElement(type || 'div');
+  const element = document.createElement(type || "div");
 
-  element.style.height = (height || 10) + 'px';
+  element.style.height = (height || 10) + "px";
 
-  element.style.width = (width || 10) + 'px';
+  element.style.width = (width || 10) + "px";
 
   return element;
 }
 
 // 0은 falsy로 처리되기 때문에 OR에서 걸리게 된다.
 
-createElement('div', 0, 0);
+createElement("div", 0, 0);
 
 // ?? 연산자는 null or undefined만 평가한다. 널 병합 연산자
 
 function createElement(type, height, width) {
-  const element = document.createElement(type ?? 'div');
+  const element = document.createElement(type ?? "div");
 
-  element.style.height = (height ?? 10) + 'px';
+  element.style.height = (height ?? 10) + "px";
 
-  element.style.width = (width ?? 10) + 'px';
+  element.style.width = (width ?? 10) + "px";
 
   return element;
 }
 
-createElement('div', 0, 0);
+createElement("div", 0, 0);
 ```
 
 ```javascript
@@ -1448,14 +1448,14 @@ function helloWorld(message) {
   // Early Return을 사용할 때도 널 병합 연산자를 고려해서 넣어야함.
 
   if (!message) {
-    return 'Hello! World';
+    return "Hello! World";
   }
 
-  return 'Hello!' + (message || 'World');
+  return "Hello!" + (message || "World");
 }
 
 function helloWorld(message) {
-  return 'Hello!' + (message || 'World');
+  return "Hello!" + (message || "World");
 }
 
 helloWorld(0);
@@ -1483,15 +1483,15 @@ const isValidToken = false;
 // 로그인 성공을 실패로 바꾸는 과정
 
 if (isValidToken && isValidUser) {
-  console.log('로그인 성공!');
+  console.log("로그인 성공!");
 }
 
 if (!(isValidToken && isValidUser)) {
-  console.log('로그인 실패!');
+  console.log("로그인 실패!");
 }
 
 if (!isValidToken || !isValidUser) {
-  console.log('로그인 실패!');
+  console.log("로그인 실패!");
 }
 ```
 
@@ -1500,16 +1500,16 @@ if (!isValidToken || !isValidUser) {
 ```javascript
 const arr = [1, 2, 3];
 
-arr[3] = 'test';
+arr[3] = "test";
 
-arr['property'] = 'string value';
+arr["property"] = "string value";
 
-arr['obj'] = {};
+arr["obj"] = {};
 
 arr[{}] = [1, 2, 3];
 
-arr['func'] = function () {
-  return 'hello';
+arr["func"] = function () {
+  return "hello";
 };
 
 for (let i = 0; i < arr.length; i++) {
@@ -1527,11 +1527,11 @@ console.log(arr);
 const arr = [1, 2, 3];
 
 if (arr.length) {
-  console.log('배열 확인');
+  console.log("배열 확인");
 }
 
-if (typeof arr === 'object') {
-  console.log('배열 확인');
+if (typeof arr === "object") {
+  console.log("배열 확인");
 }
 
 // 배열 검사
@@ -1657,26 +1657,26 @@ secondInput.split('').forEach(num => {
 
 ```javascript
 function clickGroupButton() {
-  const confirmButton = document.getElementsByTagName('button')[0];
+  const confirmButton = document.getElementsByTagName("button")[0];
 
-  const cancelButton = document.getElementsByTagName('button')[1];
+  const cancelButton = document.getElementsByTagName("button")[1];
 
-  const resetButton = document.getElementsByTagName('button')[2];
+  const resetButton = document.getElementsByTagName("button")[2];
 }
 
 // 예시
 
 function clickGroupButton() {
   const [confirmButton, cancelButton, resetButton] =
-    document.getElementsByTagName('button');
+    document.getElementsByTagName("button");
 }
 ```
 
 ```javascript
 function formatDate(targetDate) {
-  const date = targetDate.toISOString().split('T')[0];
+  const date = targetDate.toISOString().split("T")[0];
 
-  const [year, month, day] = date.split('-');
+  const [year, month, day] = date.split("-");
 
   return `${year}년 ${month}월 ${day}일`;
 }
@@ -1684,9 +1684,9 @@ function formatDate(targetDate) {
 // 예시
 
 function formatDate(targetDate) {
-  const [date] = targetDate.toISOString().split('T');
+  const [date] = targetDate.toISOString().split("T");
 
-  const [year, month, day] = date.split('-');
+  const [year, month, day] = date.split("-");
 
   return `${year}년 ${month}월 ${day}일`;
 }
@@ -1694,13 +1694,13 @@ function formatDate(targetDate) {
 // 예시 2
 
 function head(arr) {
-  return arr[0] ?? '';
+  return arr[0] ?? "";
 }
 
 function formatDate(targetDate) {
-  const date = head(targetDate.toISOString().split('T'));
+  const date = head(targetDate.toISOString().split("T"));
 
-  const [year, month, day] = date.split('-');
+  const [year, month, day] = date.split("-");
 
   return `${year}년 ${month}월 ${day}일`;
 }
@@ -1710,9 +1710,9 @@ function formatDate(targetDate) {
 
 ```javascript
 const arrayLikeObject = {
-  0: 'HELLO',
+  0: "HELLO",
 
-  1: 'WORLD',
+  1: "WORLD",
 
   length: 2,
 };
@@ -1732,9 +1732,9 @@ function generatePriceList() {
     console.log(element);
   }
 
-  return arguments.map((arg) => arg + '원'); // 유사 배열 객체이기 때문에 배열 메소드 에러 발생
+  return arguments.map((arg) => arg + "원"); // 유사 배열 객체이기 때문에 배열 메소드 에러 발생
 
-  return Array.from(arguments).map((arg) => arg + '원'); // 배열로 변환 후 사용
+  return Array.from(arguments).map((arg) => arg + "원"); // 배열로 변환 후 사용
 }
 
 generatePriceList(100, 200, 300, 400, 500);
@@ -1749,7 +1749,7 @@ generatePriceList(100, 200, 300, 400, 500);
 - 새로운 배열을 반환하는 메서드들을 활용한다.
 
 ```javascript
-const originArray = ['123', '456', '789'];
+const originArray = ["123", "456", "789"];
 
 const newArray = originArray;
 
@@ -1771,13 +1771,13 @@ originArray.unshift(0);
 ```javascript
 // 원화
 
-const price = ['2000', '1000', '3000', '5000', '4000'];
+const price = ["2000", "1000", "3000", "5000", "4000"];
 
 function getWonPrice(priceList) {
   let temp = [];
 
   for (let i = 0; i < priceList.length; i++) {
-    temp.push(priceList[i] + '원');
+    temp.push(priceList[i] + "원");
   }
 
   return temp;
@@ -1785,7 +1785,7 @@ function getWonPrice(priceList) {
 
 // 수정후 코드
 
-const suffixWon = (price) => price + '원';
+const suffixWon = (price) => price + "원";
 
 function getWonPrice(priceList) {
   return priceList.map(suffixWon);
@@ -1793,7 +1793,7 @@ function getWonPrice(priceList) {
 
 // 수정후 코드 + 조건
 
-const suffixWon = (price) => price + '원';
+const suffixWon = (price) => price + "원";
 
 const isOverOneThousand = (price) => Number(price) > 1000;
 
@@ -1809,7 +1809,7 @@ function getWonPrice(priceList) {
 ```javascript
 // 수정후 코드 + 조건 + 정렬
 
-const suffixWon = (price) => price + '원';
+const suffixWon = (price) => price + "원";
 
 const isOverOneThousand = (price) => Number(price) > 1000;
 
@@ -1841,15 +1841,15 @@ function getWonPrice(priceList) {
 언어의 명세에 따라 상황에 맞춰 사용해야 한다.
 
 ```javascript
-const price = ['2000', '1000', '3000', '5000', '4000'];
+const price = ["2000", "1000", "3000", "5000", "4000"];
 
 // 함수를 실행
 
-const newPricesForEach = prices.forEach((price) => price + '원');
+const newPricesForEach = prices.forEach((price) => price + "원");
 
 // 새로운 배열을 반환
 
-const newPricesMap = prices.map((price) => price + '원');
+const newPricesMap = prices.map((price) => price + "원");
 ```
 
 ### continue & break
@@ -1887,17 +1887,17 @@ break;
 Concise Method - 간결한 메서드
 
 ```javascript
-const firstName = 'jung';
+const firstName = "jung";
 
-const lastName = 'hoon';
+const lastName = "hoon";
 
 const person = {
-  firstName: 'jung',
+  firstName: "jung",
 
-  lastName: 'hoon',
+  lastName: "hoon",
 
   getFullName: () => {
-    return this.firstName + ' ' + this.lastName;
+    return this.firstName + " " + this.lastName;
   },
 };
 
@@ -1909,7 +1909,7 @@ const person = {
   lastName,
 
   getFullName() {
-    return this.firstName + ' ' + this.lastName;
+    return this.firstName + " " + this.lastName;
   },
 };
 ```
@@ -1918,30 +1918,30 @@ const person = {
 
 ```javascript
 function getUserType(type) {
-  if (type === 'ADMIN') {
-    return '관리자';
-  } else if (type === 'INSTRUCTOR') {
-    return '강사';
-  } else if (type === 'STUDENT') {
-    return '수강생';
+  if (type === "ADMIN") {
+    return "관리자";
+  } else if (type === "INSTRUCTOR") {
+    return "강사";
+  } else if (type === "STUDENT") {
+    return "수강생";
   } else {
-    return '해당없음';
+    return "해당없음";
   }
 }
 
 function getUserType(type) {
   switch (key) {
-    case 'ADMIN':
-      return '관리자';
+    case "ADMIN":
+      return "관리자";
 
-    case 'INSTRUCTOR':
-      return '강사';
+    case "INSTRUCTOR":
+      return "강사";
 
-    case 'STUDENT':
-      return '수강생';
+    case "STUDENT":
+      return "수강생";
 
     default:
-      return '해당없음';
+      return "해당없음";
   }
 }
 
@@ -1951,13 +1951,13 @@ function getUserType(type) {
 
 function getUserType(type) {
   const USER_TYPE = {
-    ADMIN: '관리자',
+    ADMIN: "관리자",
 
-    INSTRUCTOR: '강사',
+    INSTRUCTOR: "강사",
 
-    STUDENT: '수강생',
+    STUDENT: "수강생",
 
-    UNDEFINED: '해당 없음',
+    UNDEFINED: "해당 없음",
   };
 
   return USER_TYPE[type] || USER_TYPE.UNDEFINED;
@@ -1968,12 +1968,12 @@ function getUserType(type) {
 function getUserType(type) {
   return (
     {
-      ADMIN: '관리자',
+      ADMIN: "관리자",
 
-      INSTRUCTOR: '강사',
+      INSTRUCTOR: "강사",
 
-      STUDENT: '수강생',
-    }[type] || '해당 없음'
+      STUDENT: "수강생",
+    }[type] || "해당 없음"
   );
 }
 ```
@@ -1995,7 +1995,7 @@ function Person(name, age, location) {
   this.location = location;
 }
 
-const yh = new Person('yh', 25, 'korea');
+const yh = new Person("yh", 25, "korea");
 
 // 수정후 코드
 
@@ -2007,7 +2007,7 @@ function Person({ name, age, location }) {
   this.location = location;
 }
 
-const yh = new Person({ name: 'yh', age: 25, location: 'korea' });
+const yh = new Person({ name: "yh", age: 25, location: "korea" });
 
 // 수정후 코드
 
@@ -2019,13 +2019,13 @@ function Person(name, { age, location }) {
   this.location = location;
 }
 
-const yhOptions = { age: 25, location: 'korea' };
+const yhOptions = { age: 25, location: "korea" };
 
-const yh = new Person('yh', yhOptions);
+const yh = new Person("yh", yhOptions);
 ```
 
 ```javascript
-const orders = ['first', 'second', 'third'];
+const orders = ["first", "second", "third"];
 
 const st = orders[0];
 
@@ -2212,7 +2212,7 @@ function Car(name, brand) {
 }
 
 Car.prototype.sayName = function () {
-  return this.brand + '-' + this.name;
+  return this.brand + "-" + this.name;
 };
 
 // JS 발전으로 인해 class 사용 가능
@@ -2225,33 +2225,33 @@ class Car {
   }
 
   sayName() {
-    return this.brand + '-' + this.name;
+    return this.brand + "-" + this.name;
   }
 }
 
-const casper = new Car('캐스퍼', '현대');
+const casper = new Car("캐스퍼", "현대");
 ```
 
 ### hasOwnProperty
 
 ```javascript
 const person = {
-  name: 'yh',
+  name: "yh",
 };
 
-person.hasOwnProperty('jyh'); // 있으면 true, 없으면 false
+person.hasOwnProperty("jyh"); // 있으면 true, 없으면 false
 
 const foo = {
   hasOwnProperty: function () {
     return false;
   },
 
-  bar: '~~~~',
+  bar: "~~~~",
 };
 
-foo.hasOwnProperty('bar'); // false, hasOwnProperty는 함수명을 보호하지 않음
+foo.hasOwnProperty("bar"); // false, hasOwnProperty는 함수명을 보호하지 않음
 
-Object.prototype.hasOwnProperty.call(foo, 'bar'); // prototype으로 접근해서 사용하면 정상 동작
+Object.prototype.hasOwnProperty.call(foo, "bar"); // prototype으로 접근해서 사용하면 정상 동작
 
 // 함수화
 
@@ -2283,7 +2283,7 @@ function logout() {
   model.isValidToken = false;
 }
 
-someElement.addEventListener('click', login);
+someElement.addEventListener("click", login);
 
 // model이라는 객체를 접근하기 너무 용이하기에 함수로 뺴준다.
 
@@ -2407,7 +2407,7 @@ function example(parameter) {
   console.log(parameter); // Output = foo
 }
 
-const argument = 'foo';
+const argument = "foo";
 
 example(argument);
 ```
@@ -2491,7 +2491,7 @@ function createCar(name, { brand, color, type }) {
   };
 }
 
-createCar('car', {});
+createCar("car", {});
 ```
 
 ```javascript
@@ -2499,11 +2499,11 @@ createCar('car', {});
 
 function createCar({ name, brand, color, type }) {
   if (!name) {
-    throw new Error('name is a required');
+    throw new Error("name is a required");
   }
 
   if (!brand) {
-    throw new Error('brand is a required');
+    throw new Error("brand is a required");
   }
 }
 ```
@@ -2522,7 +2522,7 @@ function createCarousel(options) {
 
   var center = options.center || false;
 
-  var navElement = options.navElement || 'div';
+  var navElement = options.navElement || "div";
 
   // ..some code
 
@@ -2546,7 +2546,7 @@ function createCarousel({
 
   center = false,
 
-  navElement = 'div',
+  navElement = "div",
 } = {}) {
   // ..some code
 
@@ -2564,17 +2564,17 @@ createCarousel();
 // throw error to default parameter
 
 const required = (argName) => {
-  throw new Error('required is ' + argName);
+  throw new Error("required is " + argName);
 };
 
 function createCarousel({
-  items = required('items'),
+  items = required("items"),
 
   margin = 0,
 
   center = false,
 
-  navElement = 'div',
+  navElement = "div",
 } = {}) {
   // ... some code
 
@@ -2592,7 +2592,7 @@ createCarousel({
 
   center: true,
 
-  navElement: 'span',
+  navElement: "span",
 });
 ```
 
@@ -2656,24 +2656,114 @@ function isAdult(age) {
 }
 
 function getUserName(name) {
-  return '유저 ' + name;
+  return "유저 " + name;
 }
 ```
 
-```javascript
+#### Arrow Function
 
+객체 내에서 화살표 함수를 사용하게 되면 this로 접근을 못하는 문제가 발생할 수 있다.
+
+화살표 함수는 렉시컬 스코프를 가지게 되는데 호출된 객체를 this로 바라보는 것이 아닌 바로 상위의 문맥을 따르는 경우가 있다.
+
+그렇기 때문에 상위의 스코프를 따르고 this의 동작방식을 따르지 않기 때문에 this로 호출해도 동작이 되지 않는다.
+
+this의 동작 방식과 화살표 함수를 알고 있으면 도움이 됨
+
+```javascript
+const user = {
+  name: "yh",
+  getName: () => {
+    return this.name;
+  },
+};
+
+user.getName(); // undefined
+
+// 화살표 함수 -> 일반 함수
+const user = {
+  name: "yh",
+  getName() {
+    return this.name;
+  },
+};
+
+user.getName(); // yh
+```
+
+화살표 함수는 arguments 객체도 사용할 수 없고, call, apply, bind 등 다양한 것들을 사용하지 못한다.
+
+```javascript
+const user = {
+  name: "yh",
+  getName: () => {
+    return this.name;
+  },
+  // argument는 사용 불가
+  newFriends: () => {
+    const newFriendList = Array.from(arguments);
+
+    return this.name + newFriendList;
+  },
+  // rest parameter를 사용하면 가능
+  newFriends: (...rest) => {
+    return this.name + rest;
+  },
+};
+```
+
+화살표 함수는 생성자 함수로 만들 수 없는 단점이 있음.
+
+하지만 class가 지원하기 때문에 굳이 화살표 함수로 만들 이유는 없지만 new 연산자로 조합하는 화살표 함수는 에러를 초래할 수 있다.
+
+```javascript
+const Person = (name, city) => {
+  this.name = name;
+  this.city = city;
+};
+
+const person = new Person("yh", "kr"); // Error
 ```
 
 ```javascript
+class Parent {
+  // 일반 함수
+  parentMethod() {
+    console.log("parentMethod");
+  }
 
-```
+  // 화살표 함수
+  parentMethodArrow = () => {
+    console.log("parentMethodArrow");
+  };
 
-```javascript
+  // 화살표 함수는 자식 클래스에서 동일 함수 이름으로 호출하면 화살표 함수가 호출됨
+  overrideMethod = () => {
+    return "Parent";
+  };
 
-```
+  // 화살표 함수를 그냥 함수로 바꿔주면 해결!
+  overrideMethod() {
+    return "Parent";
+  }
+}
 
-```javascript
+class Child extends Parent {
+  childMethod() {
+    // 정상 호출
+    super.parentMethod();
 
+    // Error 발생
+    super.parentMethodArrow();
+  }
+
+  overrideMethod() {
+    return "Child";
+  }
+}
+
+new Child().childMethod();
+new Child().overrideMethod(); // 부모의 메서드가 호출됨
 ```
 
 ```javascript
