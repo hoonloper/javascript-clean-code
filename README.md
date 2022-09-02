@@ -2903,10 +2903,108 @@ changeObj(obj); // { one: 100 }
 console.log(obj); // { one: 1 }
 ```
 
-```javascript
+#### Closure
 
+함수는 괄호를 사용하여 호출할 수 있다.
+
+```javascript
+function add(num1) {
+  return function sum(num2) {
+    return num1 + num2;
+  };
+}
+
+const addOne = add(1); // 함수 sum을 품고있다.
+const addTwo = add(2);
 ```
 
 ```javascript
+function add(num1) {
+  return function (num2) {
+    return function (calculateFn) {
+      return calculateFn(num1, num2);
+    };
+  };
+}
 
+function sum(num1, num2) {
+  return num1 + num2;
+}
+
+function multiple(num1, num2) {
+  return num1 * num2;
+}
+
+const addOne = add(5)(2);
+const sumAdd = addOne(sum); // 7
+const sumMultiple = addOne(multiple); // 10
+```
+
+```javascript
+function log(value) {
+  return function (fn) {
+    fn(value);
+  };
+}
+
+const logFoo = log("foo");
+
+logFoo((v) => console.log(v)); // foo
+logFoo((v) => console.info(v)); // foo
+logFoo((v) => console.error(v)); // foo, 빨강바탕
+logFoo((v) => console.warn(v)); // foo, 노랑바탕
+```
+
+```javascript
+const arr = [1, 2, 3, "A", "B", "C"];
+
+const isNumber = (value) => typeof value === "number";
+const isString = (value) => typeof value === "string";
+
+arr.filter(isNumber);
+
+// 수정후 코드(Closure X)
+function isTypeOf(type, value) {
+  return typeof value === type;
+}
+
+const isNumber = (value) => isTypeOf("number", value);
+const isString = (value) => isTypeOf("string", value);
+
+// Closure로 변환
+function isTypeOf(type, value) {
+  return function (value) {
+    return typeof type === value;
+  };
+}
+
+const isNumber = (value) => isTypeOf("number");
+const isString = (value) => isTypeOf("string");
+
+arr.filter(isNumber); // [1, 2, 3]
+arr.filter(isString); // ['A', 'B', 'C']
+```
+
+```javascript
+// endpoint 별로 나눈 코드
+function fetcher(endpoint) {
+  return function (url, options) {
+    return fetch(endpoint + url, options)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error(res.error);
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+}
+
+// baseUrl을 기억
+const getNaverApi = fecher("https://www.naver.com");
+const getKakaoApi = fecher("https://www.kakao.com");
+
+getNaverApi("/webtoon").then((res) => res);
+getKakaoApi("/webtoon").then((res) => res);
 ```
