@@ -222,7 +222,7 @@ for (var index = 0; index < array.length; index++) {
 - 전역 변수 X(var)
 - 지역 변수 O(let, const)
 - window, global을 조작하지 않습니다.
-- IIFE, Module, clsure, scope를 나누는 방법 등
+- IIFE, Module, closure, scope를 나누는 방법 등
 
 #### 임시 변수 제거하기
 
@@ -322,10 +322,11 @@ function getSomeValue(params) {
     temp *= array[index];
   }
 
+  // temp값에 따라 분기 처리 로직...
   if (temp) {
-    tempVal = temp;
+    // ... 코드
   } else if (temp) {
-    temp += tempVal;
+    // ... 코드
   }
 
   return temp;
@@ -357,54 +358,51 @@ function getSomeValue(params) {
 var global = 0;
 
 function outer() {
-	// 선언과 할당이 분리된 상황입니다.
-	console.log(global); // undefined
+  // 선언과 할당이 분리된 상황입니다.
+  console.log(global); // undefined
 
-	var global = 5;
+  var global = 5;
 
-	function inner() {
-		var global = 10;
-		console.log(global); // 10
-	}
+  function inner() {
+    var global = 10;
+    console.log(global); // 10
+  }
 
-	inner();
+  inner();
 
-	global = 1;
+  global = 1;
 
-	console.log(global); '' 1
+  console.log(global); // 1
 }
 
 outer();
 
-
 // 또 다른 사례
 function duplicatedVar() {
-	var a;
+  var a;
 
-	console.log(a); // undefined
+  console.log(a); // undefined
 
-	var a = 100;
+  var a = 100;
 
-	console.log(a); // 100
+  console.log(a); // 100
 }
 
 duplicatedVar();
-
 
 // 또 다른 사례 - 함수
 var sum;
 
 // 변수에 할당할 경우 동작합니다.
 sum = function () {
-	return 1 + 2;
+  return 1 + 2;
 };
 
 console.log(sum());
 
-
 // 함수도 호이스팅이 됩니다.
 function sum() {
-	return 1 + 2;
+  return 1 + 2;
 }
 
 console.log(sum());
@@ -417,10 +415,10 @@ var 변수에 값까지 할당하게 된다면 정상적으로 분리가 됩니�
 즉, 함수 선언시 const를 활용해 선언하는 방법을 추천합니다.
 */
 
-// '함수 선언(표현)식'
+// 함수 표현식
 const sum = function () {
-	return 1 + 2;
-}
+  return 1 + 2;
+};
 ```
 
 정리!
