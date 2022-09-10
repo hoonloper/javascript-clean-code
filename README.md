@@ -607,7 +607,7 @@ isNaN; // 느슨한 검사
 Number.isNaN; // 엄격한 검사
 ```
 
-## 📌 네이밍
+## 📌네이밍
 
 #### Min - Max
 
@@ -715,7 +715,7 @@ getDates('2022-01-01', '2022-02-01');
 genShuffleArray(1, 5);
 ```
 
-## 📌 연산자
+## 📌연산자
 
 #### 값식문
 
@@ -1049,7 +1049,7 @@ const getActiveUserName = (user, isLogin) => {
 };
 ```
 
-## 📌 조건문
+## 📌조건문
 
 #### else if & else 피하기
 
@@ -1260,7 +1260,7 @@ if (!isNotCondition) {
 }
 ```
 
-## 📌 기본값 지정
+## 📌기본값 지정
 
 #### Default case 고려하기
 
@@ -1446,7 +1446,7 @@ if (!isValidToken || !isValidUser) {
 }
 ```
 
-## 📌 객체
+## 📌객체
 
 #### JavaScript의 배열은 객체입니다.
 
@@ -2026,7 +2026,7 @@ function hasOwnProp(targetObj, targetProp) {
 }
 ```
 
-## 📌 예측 가능한 코드
+## 📌예측 가능한 코드
 
 #### 직접 접근 지양하기
 
@@ -2070,7 +2070,7 @@ function logout() {
 }
 ```
 
-## 📌 함수
+## 📌함수
 
 #### 함수, 메서드, 생성자
 
