@@ -110,7 +110,7 @@ function createCar({ name, brand, color, type }) {
   };
 }
 
-// 중요한 데이터의 경우 고정적으로 넣어주고 선택적 요소들은 옵션 형식으로 넣어준다.
+// 중요한 데이터의 경우 고정적으로 넣어주고 선택적 요소들은 옵션 형식으로 넣어줍니다.
 function createCar(name, { brand, color, type }) {
   return {
     name,
@@ -166,7 +166,7 @@ function createCarousel({
   center = false,
   navElement = 'div',
 } = {}) {
-  // .. 코드
+  // ... 코드
 
   return {
     margin,
@@ -177,7 +177,7 @@ function createCarousel({
 
 createCarousel();
 
-// throw error to default parameter
+// 고정 값이 없을 때 에러를 던져주는 함수입니다.
 const required = (argName) => {
   throw new Error('required is ' + argName);
 };
