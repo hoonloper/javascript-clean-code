@@ -19,7 +19,19 @@ for (let i = 0; i < arr.length; i++) {
 // console => 1 2 3
 
 console.log(arr);
-// console => [1, 2, 3, 'test', property: 'string value', obj: {}, '[object Object]': [1, 2, 3], func: [F]]
+/*
+console => 
+[
+  1, 
+  2, 
+  3, 
+  'test', 
+  property: 'string value', 
+  obj: {}, 
+  '[object Object]': [1, 2, 3], 
+  func: [F]
+]
+*/
 ```
 
 ```javascript
@@ -96,11 +108,11 @@ function operateTime(input, operators, is) {
   const [firstInput, secondInput] = inputs;
 
   firstInput.split('').forEach(num => {
-    cy.get('.digit').contains(num).click();
+    // ... 코드
   })
 
   secondInput.split('').forEach(num => {
-    cy.get('.digit').contains(num).click();
+    // ... 코드
   })
 }
 
@@ -119,6 +131,7 @@ function operateTime([firstInput, secondInput], operators, is) {
 ```
 
 ```javascript
+// 초기 코드
 function clickGroupButton() {
   const confirmButton = document.getElementsByTagName('button')[0];
   const cancelButton = document.getElementsByTagName('button')[1];
@@ -359,7 +372,7 @@ function getUserType(type) {
 }
 
 // Object Lookup Table - best
-// USER_TYPE을 상수로 관리해서 따로 관리를 한다.
+// USER_TYPE을 상수로 따로 관리합니다.
 function getUserType(type) {
   const USER_TYPE = {
     ADMIN: '관리자',
