@@ -218,16 +218,16 @@ function getElements() {
 
 /*
 두번째 사례 - date time을 다루는 유틸 함수
-추가적인 스펙이 생긴다면 문제가 발생할 수 있음.
+추가적인 스펙이 생긴다면 문제가 발생할 수 있습니다.
 날짜에 대한 요구사항이 생겼을 때
 - 함수 추가
 - 함수 유지보수 수정
-함수를 유지보수한다면 문제가 생길 수 있음.
--> 수십, 수백가지 사용 경로가 있을 수 있기 때문
+함수를 유지보수한다면 문제가 생길 수 있습니다.
+-> 수십, 수백가지 사용 경로가 있을 수 있기 때문입니다.
 */
 
+// 초기 코드
 function getDateTime(targetDate) {
-  // 초기 코드
   let month = targetDate.getMonth();
   let day = targetDate.getDate();
   let hour = targetDate.Hours();
@@ -241,8 +241,10 @@ function getDateTime(targetDate) {
     day,
     hour,
   };
+}
 
-  // 수정후 코드
+// 수정후 코드
+function getDateTime(targetDate) {
   const month = targetDate.getMonth();
   const day = targetDate.getDate();
   const hour = targetDate.Hours();
@@ -297,13 +299,13 @@ function getSomeValue(params) {
 }
 ```
 
-임시 변수를 제거하자!
+##### 임시 변수를 제거하자!
 
 - 명령형으로 가득한 코드가 나옵니다.
 - 어디서 어떻게 잘못되었는지 에러 트래킹이 어렵습니다.
 - 추가적인 코드를 작성하고 싶은 유혹에 빠지기 쉽습니다.(ex: temp 값의 변경...)
 
-해결책!
+어떻게 하면 좋을까?
 
 - 함수를 최대한 쪼갭니다.
 - 바로 return 합니다.
@@ -383,14 +385,13 @@ var 변수에 값까지 할당하게 된다면 정상적으로 분리가 됩니�
 const sum = function () {
   return 1 + 2;
 };
+// or
+const sum = () => {
+  return 1 + 2;
+};
 ```
 
-정리!
-런타임시 선언이 최상단으로 끌어올려지는 것이 호이스팅입니다.
-
-문제 - 코드를 작성할 때 예측하지 못한 에러가 발생합니다.
-
-해결책!
+런타임시 선언이 최상단으로 끌어올려지는 것이 호이스팅이며, 호이스팅은 코드를 작성할 때 예측할 수 없는 에러를 불러올 수 있습니다.
 
 - var -> let, const 지향합니다.
 - 함수 조심 -> 함수 표현식을 사용 권장합니다.
@@ -468,8 +469,6 @@ Object.prototype.toString.call(arr);
 Object.prototype.toString.call(date);
 ```
 
-정리
-
 - JS는 동적인 언어라 타입도 동적입니다.
 - 그래서 타입 검사가 어렵습니다.
 - 상황에 맞는 타입 검사 방법과 주의를 찾아야 합니다. (외우기는 힘들어요)
@@ -498,7 +497,7 @@ undefined === null; // false
 !undefined === !null; // true
 ```
 
-undefined, null -> 값이 없거나 정의되지 않은 즉, 명시적인 표현
+undefined, null -> 값이 없거나 정의되지 않은, 즉 명시적인 표현입니다.
 
 undefined -> NaN
 null -> 0
@@ -538,12 +537,10 @@ Boolean(''); // false
 parseInt('9.9999', 10); // 9
 ```
 
-정리
-
 - 사용자 -> 명시적인 변환(타입)
 - JS -> 암묵적인 변환(타입)
 
-즉, 명시적인 변환으로 예측하기 쉬운 코드로 작성하는 게 좋습니다.
+즉 명시적인 변환으로 예측하기 쉬운 코드로 작성하는 게 좋습니다.
 
 #### isNaN
 
@@ -681,7 +678,7 @@ genShuffleArray(1, 5);
 
 #### 값식문
 
-문법 : 말의 구성 및 운용상의 규칙. 또는 그것을 연구하는 학문
+문법 정의 : 말의 구성 및 운용상의 규칙. 또는 그것을 연구하는 학문
 
 중요한 이유 - 개발자는 프로그래밍 언어를 사용하기 때문입니다. 컴퓨터를 이해시키지 못하면 문법 에러를 일으킬 수 밖에 없습니다.
 
@@ -812,7 +809,7 @@ function example() {
 }
 
 function example() {
-  // 조건을 정의해본 후 케이스가 많다면 switch문을 고려한다.
+  // 조건을 정의해본 후 케이스가 많다면 switch문을 고려해봅니다.
   if (condition1) {
     return value1;
   } else if (condition2) {
@@ -837,12 +834,12 @@ function example() {
 ```
 
 ```javascript
-// 우선 순위는 한번 감싸주며 가독성을 높여줍니다.
+// 우선 순위는 괄호'()'로 한번 감싸주며 가독성을 높여줍니다.
 const example = condition1 ? (a === 0 ? 'zero' : 'positive') : 'negative';
 ```
 
 ```javascript
-// 삼항 연산자의 좋은 예시
+// 삼항 연산자의 좋은 예시입니다.
 const welcomeMessage = (isLogin) => {
   const name = isLogin ? getName() : '이름없음';
 
@@ -1381,8 +1378,8 @@ helloWorld(0);
 ```
 
 ```javascript
-null || undefined ?? "foo"; // 에러 발생. 사람들의 잦은 실수로 언어에서 규제함.
-(null || undefined) ?? "foo"; // 해결. OR 연산자는 우선순위가 낮음
+null || undefined ?? "foo"; // 에러 발생. 사람들의 잦은 실수로 언어에서 규제를 했습니다.
+(null || undefined) ?? "foo"; // 해결. OR 연산자는 우선순위가 낮습니다.
 ```
 
 #### 드모르간의 법칙
